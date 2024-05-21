@@ -47,11 +47,21 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       defaultValue: 10
     },
+    createdAt: {
+      allowNull: false,
+      type: DataTypes.DATE,
+      defaultValue: DataTypes.NOW,
+      field: 'created_at'
+    },
+    updatedAt: {
+      allowNull: false,
+      type: DataTypes.DATE,
+      field: 'updated_at'
+    }
   }, {
     sequelize,
     modelName: 'TicketType',
     tableName: 'ticket_type',
-    timestamps: true
   });
   return TicketType;
 };

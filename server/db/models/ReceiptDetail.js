@@ -54,11 +54,21 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.INTEGER,
       allowNull: false
     },
+    createdAt: {
+      allowNull: false,
+      type: DataTypes.DATE,
+      field: 'created_at',
+      defaultValue: DataTypes.NOW
+    },
+    updatedAt: {
+      allowNull: false,
+      type: DataTypes.DATE,
+      field: 'updated_at',
+    }
   }, {
     sequelize,
     modelName: 'ReceiptDetail',
     tableName: 'receipt_detail',
-    timestamps: true
   });
   return ReceiptDetail;
 };
