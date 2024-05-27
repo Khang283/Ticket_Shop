@@ -13,8 +13,8 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      Receipt.belongsTo(User);
-      Receipt.hasMany(ReceiptDetail);
+      this.belongsTo(models.User, {foreignKey: {field: 'customer_id'}});
+      this.hasMany(models.ReceiptDetail, {foreignKey: "receiptId"});
     }
   }
   Receipt.init({
@@ -45,13 +45,13 @@ module.exports = (sequelize, DataTypes) => {
     },
     createdAt: {
       allowNull: false,
-      type: Sequelize.DATE,
-      defaultValue: Sequelize.NOW,
+      type: DataTypes.DATE,
+      defaultValue: DataTypes.NOW,
       field: 'created_at'
     },
     updatedAt: {
       allowNull: false,
-      type: Sequelize.DATE,
+      type: DataTypes.DATE,
       field: 'updated_at'
     }
   }, {

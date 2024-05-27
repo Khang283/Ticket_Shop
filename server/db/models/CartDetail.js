@@ -13,8 +13,8 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      CartDetail.belongsTo(Cart);
-      CartDetail.hasOne(TicketType);
+      this.belongsTo(models.Cart, {foreignKey: {field: 'cart_id'}});
+      this.belongsTo(models.TicketType, {foreignKey: {field: 'ticket_type_id'}});
     }
   }
   CartDetail.init({
