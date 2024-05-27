@@ -13,8 +13,8 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      Receipt.belongsTo(user);
-      Receipt.hasMany(ReceiptDetail);
+      // Receipt.belongsTo(user);
+      // Receipt.hasMany(ReceiptDetail);
     }
   }
   Receipt.init({

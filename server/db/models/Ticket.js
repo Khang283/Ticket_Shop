@@ -12,7 +12,7 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      Ticket.hasOne(TicketType);
+      // Ticket.hasOne(TicketType);
     }
   }
   Ticket.init({

@@ -13,8 +13,8 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      ReceiptDetail.belongsTo(Receipt);
-      ReceiptDetail.hasOne(TicketType)
+      // ReceiptDetail.belongsTo(Receipt);
+      // ReceiptDetail.hasOne(TicketType)
     }
   }
   ReceiptDetail.init({
