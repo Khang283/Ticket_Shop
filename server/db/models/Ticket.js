@@ -2,7 +2,7 @@
 const {
   Model
 } = require('sequelize');
-const TicketType = require('./tickettype');
+const TicketType = require('./TicketType');
 module.exports = (sequelize, DataTypes) => {
   class Ticket extends Model {
     /**

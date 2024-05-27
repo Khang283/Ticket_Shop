@@ -3,7 +3,7 @@ const {
   Model
 } = require('sequelize');
 const Receipt = require('./Receipt');
-const TicketType = require('./tickettype');
+const TicketType = require('./TicketType');
 module.exports = (sequelize, DataTypes) => {
   class ReceiptDetail extends Model {
     /**

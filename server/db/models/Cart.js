@@ -2,7 +2,7 @@
 const {
   Model
 } = require('sequelize');
-const User = require('./user');
+const User = require('./User');
 const CartDetail = require('./CartDetail');
 module.exports = (sequelize, DataTypes) => {
   class Cart extends Model {
