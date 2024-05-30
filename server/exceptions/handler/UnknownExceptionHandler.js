@@ -7,7 +7,7 @@ const UnknownExceptionHandler = (err, req, res, next)=>{
         const errStatus = err.status || 500;
         return res.status(500).json({
             message: msg,
-            timestampe: Date.now(),
+            timestamp: Date.now(),
             status: errStatus,
             path: req.originalUrl
         })

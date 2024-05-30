@@ -2,7 +2,7 @@
 const {
   Model
 } = require('sequelize');
-const TicketType = require('./tickettype');
+const TicketType = require('./TicketType');
 module.exports = (sequelize, DataTypes) => {
   class Ticket extends Model {
     /**
@@ -12,7 +12,7 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      Ticket.hasOne(TicketType);
+      this.belongsTo(models.TicketType, {foreignKey: {field: 'ticket_type_id'}});
     }
   }
   Ticket.init({
