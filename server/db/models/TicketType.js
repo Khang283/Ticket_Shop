@@ -14,9 +14,9 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      // TicketType.hasMany(ReceiptDetail);
-      // TicketType.hasMany(Ticket);
-      // TicketType.hasMany(CartDetail);
+      this.hasMany(models.ReceiptDetail, {foreignKey: 'ticketTypeId'});
+      this.hasMany(models.Ticket, {foreignKey: 'ticketTypeId'});
+      this.hasMany(models.CartDetail, {foreignKey: 'ticketTypeId'});
     }
   }
   TicketType.init({
@@ -47,11 +47,21 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       defaultValue: 10
     },
+    createdAt: {
+      allowNull: false,
+      type: DataTypes.DATE,
+      defaultValue: DataTypes.NOW,
+      field: 'created_at'
+    },
+    updatedAt: {
+      allowNull: false,
+      type: DataTypes.DATE,
+      field: 'updated_at'
+    }
   }, {
     sequelize,
     modelName: 'TicketType',
     tableName: 'ticket_type',
-    timestamps: true
   });
   return TicketType;
 };

@@ -3,7 +3,7 @@ const {
   Model
 } = require('sequelize');
 const Cart = require('./Cart');
-const TicketType = require('./tickettype');
+const TicketType = require('./TicketType');
 module.exports = (sequelize, DataTypes) => {
   class CartDetail extends Model {
     /**
@@ -13,8 +13,8 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      // CartDetail.belongsTo(Cart);
-      // CartDetail.hasOne(TicketType);
+      this.belongsTo(models.Cart, {foreignKey: {field: 'cart_id'}});
+      this.belongsTo(models.TicketType, {foreignKey: {field: 'ticket_type_id'}});
     }
   }
   CartDetail.init({
@@ -53,11 +53,21 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       defaultValue: 1
     },
+    createdAt: {
+      allowNull: false,
+      type: DataTypes.DATE,
+      defaultValue: DataTypes.NOW,
+      field: 'created_at'
+    },
+    updatedAt: {
+      allowNull: false,
+      type: DataTypes.DATE,
+      field: 'updated_at'
+    }
   }, {
     sequelize,
     modelName: 'CartDetail',
     tableName: 'cart_detail',
-    timestamps: true
   });
   return CartDetail;
 };
