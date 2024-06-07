@@ -12,7 +12,10 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      Ticket.hasOne(TicketType);
+      Ticket.belongsTo(models.TicketType, {
+        foreignKey: 'ticketTypeId',
+        as: 'ticketType'
+      });
     }
   }
   Ticket.init({

@@ -13,8 +13,14 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      ReceiptDetail.belongsTo(Receipt);
-      ReceiptDetail.hasOne(TicketType)
+      ReceiptDetail.belongsTo(models.Receipt, { 
+        foreignKey: 'receiptId', 
+        as: 'receipt' 
+      });
+      ReceiptDetail.belongsTo(models.TicketType, { 
+        foreignKey: 'ticketTypeId', 
+        as: 'ticketType' 
+      });
     }
   }
   ReceiptDetail.init({
