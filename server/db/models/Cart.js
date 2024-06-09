@@ -3,9 +3,6 @@ const {
   Model,
   Sequelize
 } = require('sequelize');
-const db = require('../index');
-const User = require('./User');
-const CartDetail = require('./CartDetail');
 module.exports = (sequelize, DataTypes) => {
   class Cart extends Model {
     /**
@@ -15,6 +12,13 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      Cart.belongsTo(models.User, {
+        foreignKey: 'customerId'
+      });
+      Cart.hasMany(models.CartDetail, {
+        foreignKey: 'cartId',
+        as: 'cart'
+      });
       this.belongsTo(models.User, {foreignKey: {field: 'customer_id'}});
       this.hasMany(models.CartDetail, {foreignKey: 'cartId'})
     }
