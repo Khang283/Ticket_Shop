@@ -8,6 +8,7 @@ const PORT = process.env.PORT;
 const db = require('./db/index');
 
 app.use(morgan(process.env.LOGGING_FORMAT));
+app.use(express.json());
 app.use('/api/v1',routes);
 
 //Error handling, must be put at the end of middlewares pipe
