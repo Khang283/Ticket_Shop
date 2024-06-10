@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-import DL_Img from "../../assets/DL_Img.png";
+import QR from "../../assets/QR.png";
 const Receipt = () => {
   const [ticket, setTicket] = useState("VE_VIP");
   const [quantity, setQuantity] = useState(0);
@@ -12,19 +12,14 @@ const Receipt = () => {
   ];
   return (
     <div className="w-full max-w-lg mx-auto">
-      <div className="image">
-        <img
-          src={DL_Img}
-          alt="fireSpot"
-          style={{ width: 1000, marginBottom: 15 }}
-        />
-      </div>
+
       <form
         class="w-full max-w-lg mx-auto"
         style={{ backgroundColor: "rgb(228 197 158 / 100%)" }}
       >
+        
         <div class="flex flex-wrap -mx-3 mb-6 mx-auto">
-          <div class="w-full px-3 mx-auto">
+          <div class="w-full px-3 mx-auto" style={{ marginTop: 5 }}>
             <div class="w-full md:w-1/2 px-3 mx-auto">
               <label
                 class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2 mx-auto"
@@ -36,8 +31,34 @@ const Receipt = () => {
 
             <div class="w-full px-3 mx-auto">
               <p class="text-gray-600 text-xs italic">
-                Vui lòng điền thông tin dưới để thanh toán online
+                Xin trân trọng cảm ơn
               </p>
+            </div>
+          </div>
+          <div
+            class="flex flex-wrap -mx-3 mb-6 mx-auto"
+            style={{ marginTop: 5 }}
+          >
+            <div class="w-full md:w-1/2 px-3">
+            <img
+          src={QR}
+          alt="fireSpot"
+          style={{marginBottom: 15 }}
+        />
+            </div>
+            <div class="w-full md:w-1/2 px-3">
+              <label
+                class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+                for="grid-last-name"
+              >
+                Mã đơn hàng
+              </label>
+              <input
+                class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                id="grid-last-name"
+                type="text"
+                placeholder="64Dxiopyhsudo"
+              />
             </div>
           </div>
           <div
@@ -130,7 +151,7 @@ const Receipt = () => {
           class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full mx-auto"
           style={{ marginBottom: 10, backgroundColor: "rgb(128 61 59 / 100%)" }}
         >
-          Thanh toán
+          Trang đặt vé
         </button>
       </form>
     </div>
