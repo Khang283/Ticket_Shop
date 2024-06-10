@@ -1,7 +1,13 @@
 const express = require('express');
 const router = express.Router();
-const CommonController = require('../controllers/common_controller');
 
-router.get('/', CommonController.test);
+// Định nghĩa một số route chung
+router.get('/', (req, res) => {
+  res.send('Welcome to the homepage!');
+});
+
+router.get('/about', (req, res) => {
+  res.send('About us page');
+});
 
 module.exports = router;
