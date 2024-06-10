@@ -1,6 +1,7 @@
 'use strict';
 const {
-  Model
+  Model,
+  Sequelize
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
   class Cart extends Model {
@@ -18,6 +19,8 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: 'cartId',
         as: 'cart'
       });
+      this.belongsTo(models.User, {foreignKey: {field: 'customer_id'}});
+      this.hasMany(models.CartDetail, {foreignKey: 'cartId'})
     }
   }
   Cart.init({
@@ -41,11 +44,21 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       defaultValue: 0
     },
+    createdAt: {
+      allowNull: false,
+      type: DataTypes.DATE,
+      defaultValue: DataTypes.NOW,
+      field: 'created_at'
+    },
+    updatedAt: {
+      allowNull: false,
+      type: DataTypes.DATE,
+      field: 'updated_at'
+    }
   }, {
     sequelize,
     modelName: 'Cart',
     tableName: 'carts',
-    timestamps: true
   });
   return Cart;
 };
