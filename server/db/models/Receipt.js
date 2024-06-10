@@ -2,14 +2,12 @@
 const {
   Model
 } = require('sequelize');
-const user = require('./user');
-const ReceiptDetail = require('./ReceiptDetail')
+
 module.exports = (sequelize, DataTypes) => {
   class Receipt extends Model {
     static associate(models) {
       Receipt.belongsTo(models.User, {
         foreignKey: 'customerId',
-        as: 'user'
       });
       Receipt.hasMany(models.ReceiptDetail, {
         foreignKey: 'receiptId',
@@ -47,7 +45,7 @@ module.exports = (sequelize, DataTypes) => {
     sequelize,
     modelName: 'Receipt',
     tableName: 'receipt',
-    timestamps: true
+    timestamps: false
   });
   return Receipt;
 };

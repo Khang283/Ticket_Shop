@@ -22,7 +22,6 @@ module.exports = {
             key: 'id',
         },
         allowNull: false,
-        field: 'customer_id'
       },
       total: {
         type: Sequelize.DECIMAL,

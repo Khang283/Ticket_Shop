@@ -3,6 +3,7 @@ const app = express();
 const routes = require('./routes/index');
 const morgan = require('morgan');
 require('dotenv').config();
+app.use(express.json());
 
 const PORT = process.env.PORT;
 const db = require('./db/index');
