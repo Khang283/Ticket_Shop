@@ -25,7 +25,7 @@ const AddUserForm = ({ onClose }) => {
         phoneNumber
       };
       const response = await axios.post('http://localhost:3000/api/v1/users', newUser);
-      console.log('User added', response.data);
+      alert("Thêm thành công!");
       onClose();
     } catch (error) {
       console.error('Error adding user:', error.response?.data || error.message);
