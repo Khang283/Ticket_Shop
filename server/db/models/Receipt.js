@@ -13,6 +13,9 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: 'receiptId',
         as: 'receiptDetails'
       });
+      // define association here
+      this.belongsTo(models.User, {foreignKey: {field: 'customer_id'}});
+      this.hasMany(models.ReceiptDetail, {foreignKey: "receiptId"});
     }
   }
   Receipt.init({
@@ -31,16 +34,27 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       references: {
         model: {
-            tableName: 'users'
+          tableName: 'users'
         },
         key: 'id'
       },
       field: 'customer_id'
     },
     total: {
-        type: DataTypes.DECIMAL,
-        defaultValue: 0,
-      },
+      type: DataTypes.DECIMAL,
+      defaultValue: 0,
+    },
+    createdAt: {
+      allowNull: false,
+      type: DataTypes.DATE,
+      defaultValue: DataTypes.NOW,
+      field: 'created_at'
+    },
+    updatedAt: {
+      allowNull: false,
+      type: DataTypes.DATE,
+      field: 'updated_at'
+    }
   }, {
     sequelize,
     modelName: 'Receipt',
