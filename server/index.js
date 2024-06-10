@@ -6,6 +6,11 @@ const errorHandling = require('./exceptions/index');
 require('dotenv').config();
 const PORT = process.env.PORT;
 const db = require('./db/index');
+const cors = require('cors');
+app.use(express.json());
+
+
+app.use(cors());
 
 app.use(morgan(process.env.LOGGING_FORMAT));
 app.use('/api/v1',routes);
