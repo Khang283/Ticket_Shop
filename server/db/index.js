@@ -17,3 +17,4 @@ db.authenticate()
     .catch(error => console.log("Unable to connect to database: ", error));
 
 module.exports = db;
+

@@ -14,6 +14,18 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      TicketType.hasMany(models.ReceiptDetail, { 
+        foreignKey: 'ticketTypeId', 
+        as: 'receiptDetails' 
+      });
+      TicketType.hasMany(models.Ticket, { 
+        foreignKey: 'ticketTypeId', 
+        as: 'tickets' 
+      });
+      TicketType.hasMany(models.CartDetail, { 
+        foreignKey: 'ticketTypeId', 
+        as: 'cartDetails' 
+      });
       this.hasMany(models.ReceiptDetail, {foreignKey: 'ticketTypeId'});
       this.hasMany(models.Ticket, {foreignKey: 'ticketTypeId'});
       this.hasMany(models.CartDetail, {foreignKey: 'ticketTypeId'});
