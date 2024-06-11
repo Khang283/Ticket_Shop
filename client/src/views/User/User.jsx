@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import './User.css';
-import AddUserForm from '../../components/forms/AddUserForm/AddUserForm';
-import EditUserForm from '../../components/forms/EditUserForm/EditUserForm';
-import DeleteUserForm from '../../components/forms/DeleteUserForm/DeleteUserForm';
+import AddUserForm from '../../components/forms/User/AddUserForm/AddUserForm';
+import EditUserForm from '../../components/forms/User/EditUserForm/EditUserForm';
+import DeleteUserForm from '../../components/forms/User/DeleteUserForm/DeleteUserForm';
 import { FaTrash, FaEdit } from 'react-icons/fa';
 import axios from 'axios';
 
