@@ -13,6 +13,8 @@ const {
   UserExistException,
 } = require("../exceptions/exceptions/user_exist_exception");
 const RefreshToken = require("../db/models/RefreshToken");
+const { RefreshTokenExpireException } = require("../exceptions/exceptions/refresh_token_expire_exception");
+const { UnknownException } = require("../exceptions/exceptions/unknown_exception");
 const ACCESS_TOKEN_LIFE = process.env.ACCESS_TOKEN_LIFE;
 const REFRESH_TOKEN_LIFE = process.env.REFRESH_TOKEN_LIFE;
 
@@ -43,17 +45,42 @@ class AuthenticationController {
     );
   };
 
-  verifyToken = (req, res, next) => {
-    let token = req.headers.authorization.substring(7);
+  generateRefreshTokenWithExpireDate = (id, username, expiresIn) => {
+    return jwt.sign(
+      {
+        id: id,
+        username: username,
+      },
+      SECRET_KEY,
+      {
+        expiresIn: expiresIn,
+      }
+    );
+  }
 
-    try {
-      let decode = jwt.verify(token, SECRET_KEY);
-      req.username = decode.username;
-      req.id = decode.id;
-      next();
-    } catch (err) {
-      next(new JwtException(token));
+  verifyToken = (req, res, next) => {
+    let token = req.headers.authorization;
+    if (!token) {
+      return res.status(401).json({ error: 'Unauthorized' });
     }
+    token = token.substring(7);
+    jwt.verify(token, SECRET_KEY, (err, decoded) => {
+      if (err) {
+        console.log.apply(err.message);
+        const msg = err.message || "JWT Error";
+        return res.status(401).json({
+          message: msg,
+          timestamp: Date.now(),
+          status: 401,
+          path: req.originalUrl
+        })
+      }
+      else {
+        req.username = decoded.username;
+        req.id = decoded.id;
+        next();
+      }
+    });
   };
 
   register = async (req, res, next) => {
@@ -151,6 +178,103 @@ class AuthenticationController {
       next(new UserExistException(username));
     }
   };
+
+  deleteRefreshToken = async (refreshToken) => {
+    try {
+      let oldRefreshToken = await db.RefreshToken.findOne({
+        where: {
+          refreshToken: refreshToken
+        }
+      })
+      await oldRefreshToken.destroy();
+    }
+    catch (err) {
+      console.log(err)
+    }
+  }
+
+  refreshToken = async (req, res, next) => {
+    let refreshToken = req.body.refreshToken;
+    let expiresIn = '';
+    let id = '';
+    let username = '';
+    if (!refreshToken) return res.status(404).json({ error: 'Missing refresh token' });
+
+    jwt.verify(refreshToken, SECRET_KEY, (err, decode) => {
+      if (err) {
+        return res.status(401).json({ message: "Invalid" });
+      }
+      else {
+        expiresIn = decode.exp;
+        id = decode.id;
+        username = decode.username;
+
+      }
+    });
+    if (expiresIn * 1000 <= Date.now()) {
+      // next(new RefreshTokenExpireException(refreshToken));
+      return res.status(500).json({ message: "Expired" })
+    }
+    else {
+      try {
+        let oldRefreshToken = await db.RefreshToken.findOne({
+          where: {
+            refreshToken: refreshToken
+          }
+        })
+        if(oldRefreshToken){
+          await oldRefreshToken.destroy();
+        }
+        else{
+          return res.status(500).json({ message: "Can not found refresh token" });
+        }
+      }
+      catch (err) {
+        return res.status(500).json({ message: "Can not found refresh token" });
+      }
+      let accesToken = this.generateToken(
+        id,
+        username
+      );
+      let newRefreshToken = this.generateRefreshTokenWithExpireDate(
+        id,
+        username,
+        expiresIn
+      );
+      db.RefreshToken.create({
+        id: uuidv4(),
+        userId: id,
+        refreshToken: newRefreshToken,
+      }).then((refreshToken) => {
+        return res.status(200).json({
+          accesToken: accesToken,
+          refreshToken: refreshToken.refreshToken,
+          type: "Bearer",
+          expiresIn: new Date(expiresIn * 1000).toLocaleDateString(),
+        })
+      });
+
+    }
+
+  }
+
+  logout = async (req, res, next) => {
+    let token = req.body.refreshToken;
+    await db.RefreshToken.destroy({
+      where: {
+        refreshToken: token
+      }
+    })
+    return res.status(200).json({message: "Logout Successfully"})
+  }
+
+  testAuth = (req, res, next) => {
+    return res.status(200).json({
+      message: "Success",
+      id: req.id,
+      username: req.username
+    });
+  }
 }
 
 module.exports = new AuthenticationController();

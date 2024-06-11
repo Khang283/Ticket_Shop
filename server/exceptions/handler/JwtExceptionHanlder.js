@@ -1,3 +1,6 @@
+const { JwtException } = require("../exceptions/jwt_exception");
+const { UnknownException } = require("../exceptions/unknown_exception");
+
 const JwtExceptionHandler = (err, req, res, next)=>{
     if(err instanceof JwtException){
         console.log.apply(err.message);
