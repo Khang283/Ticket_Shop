@@ -17,7 +17,7 @@ const DeleteUserForm = ({ user, onClose }) => {
     <div className='fixed inset-0 flex items-center justify-center bg-gray-500 bg-opacity-60'>
       <div className='bg-white rounded-lg shadow-lg w-full max-w-md text-left'>
         <h1 className='text-center'>Xác nhận xóa người dùng</h1>
-        <div className='px-8 pt-6 pb-8 mb-4'>
+        <form className='px-8 pt-6 pb-8 mb-4'>
           <p className='mb-4 text-center'>Bạn có chắc chắn muốn xóa người dùng <strong>{user.username}</strong> không?</p>
           <div className="flex items-center justify-between">
             <button
@@ -33,7 +33,7 @@ const DeleteUserForm = ({ user, onClose }) => {
               Xóa
             </button>
           </div>
-        </div>
+        </form>
       </div>
     </div>
   );

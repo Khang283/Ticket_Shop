@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { FaTrash, FaEdit } from 'react-icons/fa';
 import axios from 'axios';
-import AddTicketTypeForm from '../../components/forms/AddTicketTypeForm/AddTicketTypeForm';
-import EditTicketTypeForm from '../../components/forms/EditTicketTypeForm/EditTicketTypeForm';
-import DeleteTicketTypeForm from '../../components/forms/DeleteTicketTypeForm/DeleteTicketTypeForm';
+import AddTicketTypeForm from '../../components/forms/TicketType/AddTicketTypeForm/AddTicketTypeForm';
+import EditTicketTypeForm from '../../components/forms/TicketType/EditTicketTypeForm/EditTicketTypeForm';
+import DeleteTicketTypeForm from '../../components/forms/TicketType/DeleteTicketTypeForm/DeleteTicketTypeForm';
 
 const Ticket_Type = () => {
     const [ticketTypes, setTicketTypes] = useState([]);
