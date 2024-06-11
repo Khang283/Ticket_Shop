@@ -2,24 +2,24 @@ import React, { useState, useEffect } from 'react';
 import './User.css';
 import AddUserForm from '../../components/forms/AddUserForm/AddUserForm';
 import EditUserForm from '../../components/forms/EditUserForm/EditUserForm';
+import DeleteUserForm from '../../components/forms/DeleteUserForm/DeleteUserForm';
 import { FaTrash, FaEdit } from 'react-icons/fa';
 import axios from 'axios';
 
 const User = () => {
   const [showAddForm, setShowAddForm] = useState(false);
   const [showEditForm, setShowEditForm] = useState(false);
+  const [showDeleteForm, setShowDeleteForm] = useState(false);
   const [selectedUser, setSelectedUser] = useState(null);
   const [users, setUsers] = useState([]);
 
   const fetchUsers = async () => {
     try {
-      const response = await axios.get('http://localhost:3000/api/v1/users'); // Thực hiện gọi API đến endpoint /users
+      const response = await axios.get('http://localhost:3000/api/v1/users');
       const userData = response.data;
 
-      // Kiểm tra xem dữ liệu trả về có phải là một mảng không
       if (Array.isArray(userData)) {
         setUsers(userData);
-        console.log(users);
       } else {
         console.error('Fetched data is not an array:', userData);
       }
@@ -38,6 +38,7 @@ const User = () => {
 
   const handleCloseAddForm = () => {
     setShowAddForm(false);
+    fetchUsers();
   };
 
   const handleEditButtonClick = (user) => {
@@ -48,6 +49,18 @@ const User = () => {
   const handleCloseEditForm = () => {
     setShowEditForm(false);
     setSelectedUser(null);
+    fetchUsers(); 
+  };
+
+  const handleDeleteButtonClick = (user) => {
+    setSelectedUser(user);
+    setShowDeleteForm(true);
+  };
+
+  const handleCloseDeleteForm = () => {
+    setShowDeleteForm(false);
+    setSelectedUser(null);
+    fetchUsers();
   };
 
   return (
@@ -96,7 +109,7 @@ const User = () => {
                   </button>
                 </td>
                 <td>
-                  <button className="w-full flex justify-center items-center text-red-600 hover:text-red-800">
+                  <button className="w-full flex justify-center items-center text-red-600 hover:text-red-800" onClick={() => handleDeleteButtonClick(user)}>
                     <FaTrash />
                   </button>
                 </td>
@@ -107,6 +120,7 @@ const User = () => {
       </div>
       {showAddForm && <AddUserForm onClose={handleCloseAddForm} />}
       {showEditForm && <EditUserForm user={selectedUser} onClose={handleCloseEditForm} />}
+      {showDeleteForm && <DeleteUserForm user={selectedUser} onClose={handleCloseDeleteForm} />}
     </div>
   );
 }
