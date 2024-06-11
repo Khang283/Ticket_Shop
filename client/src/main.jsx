@@ -11,9 +11,9 @@ import Ticket_Type from './views/Ticket_Type/Ticket_Type.jsx'
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <Router>
-      {/* <App /> */}
+      <App />
       {/* <Ticket/> */}
-      <Booking/>
+      {/* <Booking/> */}
     </Router>
   </React.StrictMode>,
 )
