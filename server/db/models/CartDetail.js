@@ -2,27 +2,19 @@
 const {
   Model
 } = require('sequelize');
-const Cart = require('./Cart');
-const TicketType = require('./TicketType');
+
 module.exports = (sequelize, DataTypes) => {
   class CartDetail extends Model {
-    /**
-     * Helper method for defining associations.
-     * This method is not a part of Sequelize lifecycle.
-     * The `models/index` file will call this method automatically.
-     */
     static associate(models) {
       // define association here
       CartDetail.belongsTo(models.Cart, {
         foreignKey: 'cartId',
         as: 'cart'
       });
-      CartDetail.hasOne(models.TicketType, {
+      CartDetail.belongsTo(models.TicketType, {
         foreignKey: 'ticketTypeId',
         as: 'ticketType'
       });
-      this.belongsTo(models.Cart, {foreignKey: {field: 'cart_id'}});
-      this.belongsTo(models.TicketType, {foreignKey: {field: 'ticket_type_id'}});
     }
   }
   CartDetail.init({
