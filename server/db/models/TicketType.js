@@ -16,15 +16,15 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
       TicketType.hasMany(models.ReceiptDetail, { 
         foreignKey: 'ticketTypeId', 
-        as: 'receiptDetails' 
+        as: 'ReceiptDetails' 
       });
       TicketType.hasMany(models.Ticket, { 
         foreignKey: 'ticketTypeId', 
-        as: 'tickets' 
+        as: 'Ticket' 
       });
       TicketType.hasMany(models.CartDetail, { 
         foreignKey: 'ticketTypeId', 
-        as: 'cartDetails' 
+        as: 'CartDetail' 
       });
       this.hasMany(models.ReceiptDetail, {foreignKey: 'ticketTypeId'});
       this.hasMany(models.Ticket, {foreignKey: 'ticketTypeId'});

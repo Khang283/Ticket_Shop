@@ -2,21 +2,15 @@
 const {
   Model
 } = require('sequelize');
-const TicketType = require('./TicketType');
+
 module.exports = (sequelize, DataTypes) => {
   class Ticket extends Model {
-    /**
-     * Helper method for defining associations.
-     * This method is not a part of Sequelize lifecycle.
-     * The `models/index` file will call this method automatically.
-     */
     static associate(models) {
       // define association here
       Ticket.belongsTo(models.TicketType, {
         foreignKey: 'ticketTypeId',
         as: 'ticketType'
       });
-      this.belongsTo(models.TicketType, {foreignKey: {field: 'ticket_type_id'}});
     }
   }
   Ticket.init({
