@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Logo from "../../assets/logo.png"
 import { Link } from "react-router-dom";
 import {
@@ -15,17 +15,30 @@ import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline'
 
 
 let navigation = [
-    { name: 'Home', to: '/login', current: true },
-    { name: 'About', to: '/register', current: false },
-    { name: 'Booking', to: '#', current: false },
-    { name: 'Contact', to: '#', current: false },
+    { name: 'Home', to: '/home', current: true },
+    { name: 'About', to: '/about', current: false },
+    { name: 'Booking', to: '/booking', current: false },
+    { name: 'Contact', to: '/contact', current: false },
 ]
 function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
 }
 
 export default function Header() {
-    const isLogin = false
+
+    const [isLogin, setIsLogin] = useState(false)
+
+    useEffect(() => {
+        const token = window.localStorage.getItem('token');
+        setIsLogin(!(token === ''))
+    }, [])
+
+    const Logout = () => {
+        window.localStorage.removeItem("token");
+        setIsLogin(false)
+        navigate('/home')
+    }
+
     const refreshCurrentPage = (item) => {
         navigation = navigation.map(navItem => ({
             ...navItem,
@@ -138,12 +151,13 @@ export default function Header() {
                                                     </MenuItem>
                                                     <MenuItem>
                                                         {({ focus }) => (
-                                                            <Link
-                                                                to="/sigout"
-                                                                className={classNames(focus ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
+                                                            <button
+                                                                onClick={() => Logout()}
+
+                                                                className={classNames(focus ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700 w-48 text-left')}
                                                             >
                                                                 Sign out
-                                                            </Link>
+                                                            </button>
                                                         )}
                                                     </MenuItem>
                                                 </MenuItems>

@@ -1,7 +1,11 @@
 import React, { useState } from "react";
 import Background from '../../assets/nha_tho_duc_ba.jpg'
+import { Link, useNavigate } from "react-router-dom";
 
 export default function LoginPage() {
+
+    const navigate = useNavigate()
+
     const [username, setUsername] = useState("")
     const [password, setPassword] = useState("")
 
@@ -11,7 +15,8 @@ export default function LoginPage() {
             username,
             password
         }
-        console.log(data)
+        window.localStorage.setItem("token", "abc");
+        navigate('/home')
     }
 
     return (
@@ -48,9 +53,9 @@ export default function LoginPage() {
                                 <input type="checkbox" id="remember" class="h-4 w-4 accent-green-300 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500 focus:outline-none" />
                                 <label for="remember" class="ml-2 block text-sm text-gray-700 dark:text-gray-300">Remember me</label>
                             </div>
-                            <a href="#"
+                            <Link to="/register"
                                 class="text-xs text-indigo-500 hover:text-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Create
-                                Account</a>
+                                Account</Link>
                         </div>
                         <button type="submit" class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-amber-900 hover:bg-amber-950 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Sign in to account</button>
                     </form>
