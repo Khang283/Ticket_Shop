@@ -61,10 +61,10 @@ const AddUserForm = ({ onClose }) => {
             <label className="w-1/3 text-gray-700 text-sm font-bold mb-2 ml-4 mr-4">Giới tính</label>
             <div className="w-2/3 flex items-center">
               <label className="mr-4">
-                <input type="radio" name="gender" value="Nam" checked={gender === "Nam"} onChange={(e) => setGender(e.target.value)} /> Nam
+                <input type="radio" name="gender" value="Nam" checked={gender === "Nam"} onChange={(e) => setGender(e.target.value)} readOnly/> Nam
               </label>
               <label>
-                <input type="radio" name="gender" value="Nữ" checked={gender === "Nữ"} onChange={(e) => setGender(e.target.value)} /> Nữ
+                <input type="radio" name="gender" value="Nữ" checked={gender === "Nữ"} onChange={(e) => setGender(e.target.value)} readOnly/> Nữ
               </label>
             </div>
           </div>
