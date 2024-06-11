@@ -10,9 +10,9 @@ import Ticket from './views/Ticket/Ticket.jsx'
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <Router>
-      {/* <App /> */}
+      <App />
       {/* <Ticket/> */}
-      <Booking/>
+      {/* <Booking/> */}
     </Router>
   </React.StrictMode>,
 )
