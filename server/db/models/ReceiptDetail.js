@@ -3,7 +3,7 @@ const {
   Model
 } = require('sequelize');
 const Receipt = require('./Receipt');
-const TicketType = require('./tickettype');
+const TicketType = require('./TicketType');
 module.exports = (sequelize, DataTypes) => {
   class ReceiptDetail extends Model {
     /**
@@ -13,8 +13,16 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      ReceiptDetail.belongsTo(Receipt);
-      ReceiptDetail.hasOne(TicketType)
+      ReceiptDetail.belongsTo(models.Receipt, { 
+        foreignKey: 'receiptId', 
+        as: 'receipt' 
+      });
+      ReceiptDetail.belongsTo(models.TicketType, { 
+        foreignKey: 'ticketTypeId', 
+        as: 'ticketType' 
+      });
+      this.belongsTo(models.Receipt, {foreignKey: {field: 'receipt_id'}});
+      this.belongsTo(models.TicketType, {foreignKey: {field: 'ticket_type_id'}});
     }
   }
   ReceiptDetail.init({
@@ -54,11 +62,21 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.INTEGER,
       allowNull: false
     },
+    createdAt: {
+      allowNull: false,
+      type: DataTypes.DATE,
+      field: 'created_at',
+      defaultValue: DataTypes.NOW
+    },
+    updatedAt: {
+      allowNull: false,
+      type: DataTypes.DATE,
+      field: 'updated_at',
+    }
   }, {
     sequelize,
     modelName: 'ReceiptDetail',
     tableName: 'receipt_detail',
-    timestamps: true
   });
   return ReceiptDetail;
 };

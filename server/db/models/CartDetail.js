@@ -2,19 +2,19 @@
 const {
   Model
 } = require('sequelize');
-const Cart = require('./Cart');
-const TicketType = require('./tickettype');
+
 module.exports = (sequelize, DataTypes) => {
   class CartDetail extends Model {
-    /**
-     * Helper method for defining associations.
-     * This method is not a part of Sequelize lifecycle.
-     * The `models/index` file will call this method automatically.
-     */
     static associate(models) {
       // define association here
-      CartDetail.belongsTo(Cart);
-      CartDetail.hasOne(TicketType);
+      CartDetail.belongsTo(models.Cart, {
+        foreignKey: 'cartId',
+        as: 'cart'
+      });
+      CartDetail.belongsTo(models.TicketType, {
+        foreignKey: 'ticketTypeId',
+        as: 'ticketType'
+      });
     }
   }
   CartDetail.init({
@@ -53,11 +53,21 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       defaultValue: 1
     },
+    createdAt: {
+      allowNull: false,
+      type: DataTypes.DATE,
+      defaultValue: DataTypes.NOW,
+      field: 'created_at'
+    },
+    updatedAt: {
+      allowNull: false,
+      type: DataTypes.DATE,
+      field: 'updated_at'
+    }
   }, {
     sequelize,
     modelName: 'CartDetail',
     tableName: 'cart_detail',
-    timestamps: true
   });
   return CartDetail;
 };

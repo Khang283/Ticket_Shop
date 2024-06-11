@@ -2,19 +2,22 @@
 const {
   Model
 } = require('sequelize');
-const user = require('./user');
-const ReceiptDetail = require('./ReceiptDetail')
+const User = require('../models/User.js')
+const ReceiptDetail = require('./ReceiptDetail');
 module.exports = (sequelize, DataTypes) => {
   class Receipt extends Model {
-    /**
-     * Helper method for defining associations.
-     * This method is not a part of Sequelize lifecycle.
-     * The `models/index` file will call this method automatically.
-     */
     static associate(models) {
+      Receipt.belongsTo(models.User, {
+        foreignKey: 'customerId',
+        as: 'user'
+      });
+      Receipt.hasMany(models.ReceiptDetail, {
+        foreignKey: 'receiptId',
+        as: 'receiptDetails'
+      });
       // define association here
-      Receipt.belongsTo(user);
-      Receipt.hasMany(ReceiptDetail);
+      this.belongsTo(models.User, {foreignKey: {field: 'customer_id'}});
+      this.hasMany(models.ReceiptDetail, {foreignKey: "receiptId"});
     }
   }
   Receipt.init({
@@ -33,21 +36,31 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       references: {
         model: {
-            tableName: 'users'
+          tableName: 'users'
         },
         key: 'id'
       },
       field: 'customer_id'
     },
     total: {
-        type: DataTypes.DECIMAL,
-        defaultValue: 0,
-      },
+      type: DataTypes.DECIMAL,
+      defaultValue: 0,
+    },
+    createdAt: {
+      allowNull: false,
+      type: DataTypes.DATE,
+      defaultValue: DataTypes.NOW,
+      field: 'created_at'
+    },
+    updatedAt: {
+      allowNull: false,
+      type: DataTypes.DATE,
+      field: 'updated_at'
+    }
   }, {
     sequelize,
     modelName: 'Receipt',
     tableName: 'receipt',
-    timestamps: true
   });
   return Receipt;
 };
