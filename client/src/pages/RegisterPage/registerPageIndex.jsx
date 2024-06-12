@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Background from '../../assets/nha_tho_duc_ba.jpg'
 import './registerPageStyle.css'
 import { Link, useNavigate } from "react-router-dom";
+import authApi from "../../api/authAPI";
 
 export default function RegisterPage() {
 
@@ -66,18 +67,29 @@ export default function RegisterPage() {
         }
         console.log('send successfully!')
         const data = {
-            username,
-            fullName,
-            birthday,
-            gender,
-            email,
-            phoneNumber,
-            address,
-            password,
-            confirmPassword
+            "username": username,
+            "password": password,
+            "email": email,
+            "fullName": fullName,
+            "dob": birthday,
+            "gender": gender,
+            "role": "user",
+            "phoneNumber": phoneNumber,
+            "address": address
         }
-        resetInputs()
-        navigate('/login')
+        try {
+            const resp = await authApi.signup(data);
+            console.log(resp);
+            if (resp.status === 200) {
+                console.log("register successfully")
+                resetInputs()
+                navigate('/login')
+            } else {
+
+            }
+        } catch (error) {
+            console.log(error)
+        }
 
     }
     return (

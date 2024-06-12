@@ -12,6 +12,7 @@ import {
     Transition,
 } from '@headlessui/react'
 import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline'
+import authApi from "../../api/authAPI";
 
 
 let navigation = [
@@ -29,14 +30,30 @@ export default function Header() {
     const [isLogin, setIsLogin] = useState(false)
 
     useEffect(() => {
-        const token = window.localStorage.getItem('token');
-        setIsLogin(!(token === ''))
+        const token = window.localStorage.getItem('accesToken');
+        setIsLogin(Boolean(token))
     }, [])
 
-    const Logout = () => {
-        window.localStorage.removeItem("token");
-        setIsLogin(false)
-        navigate('/home')
+    const Logout = async () => {
+        try {
+            const data = {
+                "refreshToken": window.localStorage.getItem("refreshToken")
+            }
+            console.log(data);
+            const resp = await authApi.logout(data);
+            console.log(resp);
+            if (resp.status === 200) {
+                window.localStorage.removeItem("accesToken");
+                window.localStorage.removeItem("refreshToken");
+                window.localStorage.removeItem("role");
+                setIsLogin(false)
+                navigate('/home')
+            } else {
+
+            }
+        } catch (error) {
+            console.log(error)
+        }
     }
 
     const refreshCurrentPage = (item) => {
@@ -152,7 +169,9 @@ export default function Header() {
                                                     <MenuItem>
                                                         {({ focus }) => (
                                                             <button
-                                                                onClick={() => Logout()}
+                                                                onClick={() => {
+                                                                    Logout();
+                                                                }}
 
                                                                 className={classNames(focus ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700 w-48 text-left')}
                                                             >

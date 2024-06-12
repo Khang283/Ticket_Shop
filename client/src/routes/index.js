@@ -23,6 +23,7 @@ const publicRoutes = [
 
 const privateRoutes = [
     { path: "/user", component: User, layout: AdminLayout },
+    { path: "/ticket", component: NotFoundPage, layout: AdminLayout },
 ];
 
 
