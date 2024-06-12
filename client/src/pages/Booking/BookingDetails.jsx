@@ -1,30 +1,33 @@
-import React, { useState } from 'react';
-import Modal from 'react-modal';
-import './Modal.css'
+import React, { useState } from "react";
+import Modal from "react-modal";
+import "./Modal.css";
+import { useNavigate } from "react-router-dom";
+
 // Dummy data for demonstration
 const ticketTypes = [
   {
     id: 1,
-    name: 'VIP Ticket',
-    createdAt: '2023-06-01T12:34:56Z',
-    updatedAt: '2023-06-10T12:34:56Z',
+    name: "VIP Ticket",
+    createdAt: "2023-06-01T12:34:56Z",
+    updatedAt: "2023-06-10T12:34:56Z",
     price: 100,
     sales: 50,
-    description: 'VIP ticket with exclusive benefits',
-    amount: 200
+    description: "VIP ticket with exclusive benefits",
+    amount: 200,
   },
   {
     id: 2,
-    name: 'Standard Ticket',
-    createdAt: '2023-06-02T12:34:56Z',
-    updatedAt: '2023-06-11T12:34:56Z',
+    name: "Standard Ticket",
+    createdAt: "2023-06-02T12:34:56Z",
+    updatedAt: "2023-06-11T12:34:56Z",
     price: 50,
     sales: 150,
-    description: 'Standard ticket',
-    amount: 500
+    description: "Standard ticket",
+    amount: 500,
   },
   // Add more tickets as needed
 ];
+
 
 const BookingDetails = () => {
   const [selectedTicket, setSelectedTicket] = useState(null);
@@ -35,6 +38,17 @@ const BookingDetails = () => {
 
   const handleCloseModal = () => {
     setSelectedTicket(null);
+  };
+  const navigate = useNavigate();
+  const proceedPayment = async (item) => {
+    const ticketTypeId = item.id;
+    const name = item.name;
+    const price = item.price;
+    console.log(item);
+    navigate("/booking", {
+      replace: true,
+      state: { ticketTypeId, name, price },
+    });
   };
 
   return (
@@ -63,7 +77,12 @@ const BookingDetails = () => {
                   >
                     Xem chi tiết vé
                   </button>
-                  <button className="bg-green-500 text-white px-2 py-1 rounded">
+                  <button
+                    className="bg-green-500 text-white px-2 py-1 rounded"
+                    onClick={() => {
+                      proceedPayment(ticket);
+                    }}
+                  >
                     Đặt vé
                   </button>
                 </td>
@@ -109,7 +128,9 @@ const BookingDetails = () => {
                 </tr>
                 <tr>
                   <td className="py-2 px-4 border-b">Mô tả</td>
-                  <td className="py-2 px-4 border-b">{selectedTicket.description}</td>
+                  <td className="py-2 px-4 border-b">
+                    {selectedTicket.description}
+                  </td>
                 </tr>
               </tbody>
             </table>

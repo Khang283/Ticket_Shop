@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import DL_Img from "../../assets/DL_Img.png";
+import { useLocation } from "react-router-dom";
 const Booking = () => {
-  const [ticket, setTicket] = useState("Vé người lớn"); //chờ trang show vé
-  const [price, setPrice] = useState(50000);
-  const [ticketTypeId, setTicketTypeId] = useState(1); //chờ trang show vé
+  const location = useLocation();
+
+  const [ticket, setTicket] = useState(location.state.name);
+  const [price, setPrice] = useState(location.state.price);
+  const [ticketTypeId, setTicketTypeId] = useState(location.state.ticketTypeId);
 
   const [quantity, setQuantity] = useState(1);
   const [date, setDate] = useState(null);
@@ -20,6 +23,10 @@ const Booking = () => {
       alert('Please fill out all the fields');
     }
   };
+
+  useEffect(() => {
+
+  }, []);
 
   return (
     <div className="w-full max-w-lg mx-auto">
