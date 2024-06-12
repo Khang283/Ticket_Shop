@@ -12,7 +12,7 @@ import {
     Transition,
 } from '@headlessui/react'
 import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline'
-
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 
 let navigation = [
     { name: 'Home', to: '/login', current: true },
@@ -94,7 +94,16 @@ export default function Header() {
                                         </button> */}
 
                                         {/* Profile dropdown */}
-                                        {!isLogin && <Link to="/login" class="bg-amber-950 text-white rounded-md px-3 py-2 text-sm font-medium">Log In</Link>}
+                                        {!isLogin && (
+                                            <>
+                                                <Link to="/login" className="bg-amber-950 text-white rounded-md px-3 py-2 text-sm font-medium">Log In</Link>
+                                                
+                                                <Link to="/user" className="bg-amber-800 text-white rounded-md px-3 py-2 text-sm font-medium ml-2 flex items-center">
+                                                    <AccountCircleIcon className="mr-1" /> User
+                                                </Link>
+                                                
+                                            </>
+                                        )}
                                         {isLogin && <Menu as="div" className="relative ml-3">
                                             <div>
                                                 <MenuButton className="relative flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
