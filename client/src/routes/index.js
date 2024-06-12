@@ -8,6 +8,7 @@ import RegisterPage from "../pages/RegisterPage/registerPageIndex";
 import Booking from "../views/booking/Booking";
 
 import User from "../views/User/User";
+import Dashboard from "../views/dashboard/Dashboard";
 
 const publicRoutes = [
     { path: "/", component: NotFoundPage, layout: UserLayout },
@@ -23,6 +24,8 @@ const publicRoutes = [
 
 const privateRoutes = [
     { path: "/user", component: User, layout: AdminLayout },
+    // { path: "/admin", component: NotFoundPage, layout: AdminLayout },
+    { path: "/admin/dashboard", component: Dashboard, layout: AdminLayout },
 ];
 
 
