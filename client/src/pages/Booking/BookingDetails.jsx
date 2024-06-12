@@ -1,16 +1,33 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import React, { useState } from 'react';
 import Modal from 'react-modal';
+import './Modal.css'
+// Dummy data for demonstration
+const ticketTypes = [
+  {
+    id: 1,
+    name: 'VIP Ticket',
+    createdAt: '2023-06-01T12:34:56Z',
+    updatedAt: '2023-06-10T12:34:56Z',
+    price: 100,
+    sales: 50,
+    description: 'VIP ticket with exclusive benefits',
+    amount: 200
+  },
+  {
+    id: 2,
+    name: 'Standard Ticket',
+    createdAt: '2023-06-02T12:34:56Z',
+    updatedAt: '2023-06-11T12:34:56Z',
+    price: 50,
+    sales: 150,
+    description: 'Standard ticket',
+    amount: 500
+  },
+  // Add more tickets as needed
+];
 
 const BookingDetails = () => {
-  const [ticketTypes, setTicketTypes] = useState([]);
   const [selectedTicket, setSelectedTicket] = useState(null);
-
-  useEffect(() => {
-    axios.get('/api/ticketTypes')
-      .then(response => setTicketTypes(response.data))
-      .catch(error => console.error('Error fetching ticket types:', error));
-  }, []);
 
   const handleViewDetails = (ticket) => {
     setSelectedTicket(ticket);
@@ -23,40 +40,42 @@ const BookingDetails = () => {
   return (
     <div className="container mx-auto p-4">
       <h1 className="text-2xl font-bold mb-4">Booking Details</h1>
-      <table className="min-w-full bg-white">
-        <thead>
-          <tr>
-            <th className="py-2">STT</th>
-            <th className="py-2">ID</th>
-            <th className="py-2">Tên loại vé</th>
-            <th className="py-2">Ngày tạo</th>
-            <th className="py-2">Ngày cập nhật</th>
-            <th className="py-2">Thao tác</th>
-          </tr>
-        </thead>
-        <tbody>
-          {ticketTypes.map((ticket, index) => (
-            <tr key={ticket.id} className="text-center">
-              <td className="py-2">{index + 1}</td>
-              <td className="py-2">{ticket.id}</td>
-              <td className="py-2">{ticket.name}</td>
-              <td className="py-2">{new Date(ticket.createdAt).toLocaleString()}</td>
-              <td className="py-2">{new Date(ticket.updatedAt).toLocaleString()}</td>
-              <td className="py-2">
-                <button
-                  className="bg-blue-500 text-white px-2 py-1 rounded mr-2"
-                  onClick={() => handleViewDetails(ticket)}
-                >
-                  Xem chi tiết vé
-                </button>
-                <button className="bg-green-500 text-white px-2 py-1 rounded">
-                  Đặt vé
-                </button>
-              </td>
+      <div className="overflow-x-auto">
+        <table className="min-w-full bg-white border border-gray-200">
+          <thead className="bg-gray-100">
+            <tr>
+              <th className="py-2 px-4 border-b">STT</th>
+              <th className="py-2 px-4 border-b">ID</th>
+              <th className="py-2 px-4 border-b">Tên loại vé</th>
+              <th className="py-2 px-4 border-b">Ngày tạo</th>
+              <th className="py-2 px-4 border-b">Ngày cập nhật</th>
+              <th className="py-2 px-4 border-b">Thao tác</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {ticketTypes.map((ticket, index) => (
+              <tr key={ticket.id} className="text-center">
+                <td className="py-2 px-4 border-b">{index + 1}</td>
+                <td className="py-2 px-4 border-b">{ticket.id}</td>
+                <td className="py-2 px-4 border-b">{ticket.name}</td>
+                <td className="py-2 px-4 border-b">{new Date(ticket.createdAt).toLocaleString()}</td>
+                <td className="py-2 px-4 border-b">{new Date(ticket.updatedAt).toLocaleString()}</td>
+                <td className="py-2 px-4 border-b">
+                  <button
+                    className="bg-blue-500 text-white px-2 py-1 rounded mr-2"
+                    onClick={() => handleViewDetails(ticket)}
+                  >
+                    Xem chi tiết vé
+                  </button>
+                  <button className="bg-green-500 text-white px-2 py-1 rounded">
+                    Đặt vé
+                  </button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
 
       {selectedTicket && (
         <Modal
@@ -68,45 +87,45 @@ const BookingDetails = () => {
         >
           <div className="p-4">
             <h2 className="text-2xl font-bold mb-4">Chi tiết vé</h2>
-            <table className="min-w-full bg-white">
-              <thead>
+            <table className="min-w-full bg-white border border-gray-200">
+              <thead className="bg-gray-100">
                 <tr>
-                  <th className="py-2">Thông tin</th>
-                  <th className="py-2">Giá trị</th>
+                  <th className="py-2 px-4 border-b">Thông tin</th>
+                  <th className="py-2 px-4 border-b">Giá trị</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
-                  <td className="py-2">ID</td>
-                  <td className="py-2">{selectedTicket.id}</td>
+                  <td className="py-2 px-4 border-b">ID</td>
+                  <td className="py-2 px-4 border-b">{selectedTicket.id}</td>
                 </tr>
                 <tr>
-                  <td className="py-2">Tên loại vé</td>
-                  <td className="py-2">{selectedTicket.name}</td>
+                  <td className="py-2 px-4 border-b">Tên loại vé</td>
+                  <td className="py-2 px-4 border-b">{selectedTicket.name}</td>
                 </tr>
                 <tr>
-                  <td className="py-2">Giá</td>
-                  <td className="py-2">{selectedTicket.price}</td>
+                  <td className="py-2 px-4 border-b">Giá</td>
+                  <td className="py-2 px-4 border-b">{selectedTicket.price}</td>
                 </tr>
                 <tr>
-                  <td className="py-2">Số lượng bán</td>
-                  <td className="py-2">{selectedTicket.sales}</td>
+                  <td className="py-2 px-4 border-b">Số lượng bán</td>
+                  <td className="py-2 px-4 border-b">{selectedTicket.sales}</td>
                 </tr>
                 <tr>
-                  <td className="py-2">Mô tả</td>
-                  <td className="py-2">{selectedTicket.description}</td>
+                  <td className="py-2 px-4 border-b">Mô tả</td>
+                  <td className="py-2 px-4 border-b">{selectedTicket.description}</td>
                 </tr>
                 <tr>
-                  <td className="py-2">Số lượng</td>
-                  <td className="py-2">{selectedTicket.amount}</td>
+                  <td className="py-2 px-4 border-b">Số lượng</td>
+                  <td className="py-2 px-4 border-b">{selectedTicket.amount}</td>
                 </tr>
                 <tr>
-                  <td className="py-2">Ngày tạo</td>
-                  <td className="py-2">{new Date(selectedTicket.createdAt).toLocaleString()}</td>
+                  <td className="py-2 px-4 border-b">Ngày tạo</td>
+                  <td className="py-2 px-4 border-b">{new Date(selectedTicket.createdAt).toLocaleString()}</td>
                 </tr>
                 <tr>
-                  <td className="py-2">Ngày cập nhật</td>
-                  <td className="py-2">{new Date(selectedTicket.updatedAt).toLocaleString()}</td>
+                  <td className="py-2 px-4 border-b">Ngày cập nhật</td>
+                  <td className="py-2 px-4 border-b">{new Date(selectedTicket.updatedAt).toLocaleString()}</td>
                 </tr>
               </tbody>
             </table>
