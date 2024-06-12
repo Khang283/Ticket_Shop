@@ -2,17 +2,17 @@
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
 
-#user {
+#ticket {
     margin: 16px;
     padding: 0;
 }
 
-#user h1 {
+#ticket h1 {
     font-size: 2.4em;
     font-weight: bold;
 }
 
-#user h2 {
+#ticket h2 {
     font-size: 1.2em;
     font-weight: bold;
 }

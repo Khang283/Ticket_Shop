@@ -1,0 +1,14 @@
+#receipts {
+    margin: 16px;
+    padding: 0;
+}
+
+#receipts h1{
+    font-size: 1.6em;
+    font-weight: bold;
+}
+
+#receipts h2 {
+    font: 1.2em;
+    font-weight: bold;
+}

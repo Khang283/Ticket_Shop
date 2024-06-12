@@ -6,7 +6,8 @@ import LoginPage from "../pages/LoginPage/loginPageIndex";
 import NotFoundPage from "../pages/NotFoundPage/notFoundPage";
 import RegisterPage from "../pages/RegisterPage/registerPageIndex";
 import Booking from "../views/booking/Booking";
-
+import BookingQR from "../views/booking_QR/BookingQR";
+import Receipt from "../views/receipt/Receipt";
 import User from "../views/User/User";
 import Dashboard from "../views/dashboard/Dashboard";
 
@@ -26,6 +27,10 @@ const privateRoutes = [
     { path: "/user", component: User, layout: AdminLayout },
     // { path: "/admin", component: NotFoundPage, layout: AdminLayout },
     { path: "/admin/dashboard", component: Dashboard, layout: AdminLayout },
+    { path: "/booking", component: Booking, layout: UserLayout },
+    { path: "/bookingQR", component: BookingQR, layout: UserLayout },
+    { path: "/receipts/:id", component: Receipt, layout: UserLayout },
+
 ];
 
 
