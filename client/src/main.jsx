@@ -12,7 +12,7 @@ import User from './views/User/User.jsx'
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <Router>
-      {/* <App /> */}
+      <App />
       {/* <Ticket/> */}
       {/* <Booking/> */}
       <Receipts/>
