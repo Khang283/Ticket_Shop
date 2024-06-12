@@ -26,7 +26,4 @@ const privateRoutes = [
     { path: "/ticket", component: NotFoundPage, layout: AdminLayout },
 ];
 
-
-
-
 export { publicRoutes, privateRoutes };

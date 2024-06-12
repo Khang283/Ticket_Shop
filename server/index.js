@@ -7,6 +7,9 @@ const errorHandling = require('./exceptions/index');
 require('dotenv').config();
 const PORT = process.env.PORT;
 const db = require('./db/index');
+app.use(express.json());
+
+
 
 app.use(cors())
 
