@@ -103,7 +103,7 @@ class AuthenticationController {
                 fullName: user.fullName,
                 dob: Date(user.dob),
                 gender: user.gender,
-                role: "user",
+                role: user.role,
                 phoneNumber: user.phoneNumber,
                 address: user.address,
                 createdAt: Date(),
@@ -153,6 +153,7 @@ class AuthenticationController {
       });
       bcrypt.compare(password, user.password).then((result) => {
         if (result) {
+          let role = user.role
           let accesToken = this.generateToken(user.id, user.username);
           let refreshToken = this.generateRefreshToken(
             user.id,
@@ -166,6 +167,7 @@ class AuthenticationController {
             return res.status(200).json({
               accesToken: accesToken,
               refreshToken: refreshToken.refreshToken,
+              role: role,
               type: "Bearer",
               expiresIn: new Date().setDate(
                 new Date().getDate() + Number(ACCESS_TOKEN_LIFE)
@@ -222,10 +224,10 @@ class AuthenticationController {
             refreshToken: refreshToken
           }
         })
-        if(oldRefreshToken){
+        if (oldRefreshToken) {
           await oldRefreshToken.destroy();
         }
-        else{
+        else {
           return res.status(500).json({ message: "Can not found refresh token" });
         }
       }
@@ -265,7 +267,7 @@ class AuthenticationController {
         refreshToken: token
       }
     })
-    return res.status(200).json({message: "Logout Successfully"})
+    return res.status(200).json({ message: "Logout Successfully" })
   }
 
   testAuth = (req, res, next) => {
