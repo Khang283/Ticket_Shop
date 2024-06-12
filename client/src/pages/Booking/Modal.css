@@ -47,3 +47,9 @@ tr:hover {
 button {
   cursor: pointer;
 }
+
+/* Styling for equal width columns */
+.table-fixed th, .table-fixed td {
+  width: 25%; /* Adjust this value to ensure equal column widths */
+  word-wrap: break-word;
+}

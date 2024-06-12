@@ -41,15 +41,13 @@ const BookingDetails = () => {
     <div className="container mx-auto p-4">
       <h1 className="text-2xl font-bold mb-4">Booking Details</h1>
       <div className="overflow-x-auto">
-        <table className="min-w-full bg-white border border-gray-200">
+        <table className="min-w-full bg-white border border-gray-200 table-fixed">
           <thead className="bg-gray-100">
             <tr>
-              <th className="py-2 px-4 border-b">STT</th>
-              <th className="py-2 px-4 border-b">ID</th>
-              <th className="py-2 px-4 border-b">Tên loại vé</th>
-              <th className="py-2 px-4 border-b">Ngày tạo</th>
-              <th className="py-2 px-4 border-b">Ngày cập nhật</th>
-              <th className="py-2 px-4 border-b">Thao tác</th>
+              <th className="py-2 px-4 border-b w-1/12">STT</th>
+              <th className="py-2 px-4 border-b w-2/12">ID</th>
+              <th className="py-2 px-4 border-b w-4/12">Tên loại vé</th>
+              <th className="py-2 px-4 border-b w-5/12">Thao tác</th>
             </tr>
           </thead>
           <tbody>
@@ -58,8 +56,6 @@ const BookingDetails = () => {
                 <td className="py-2 px-4 border-b">{index + 1}</td>
                 <td className="py-2 px-4 border-b">{ticket.id}</td>
                 <td className="py-2 px-4 border-b">{ticket.name}</td>
-                <td className="py-2 px-4 border-b">{new Date(ticket.createdAt).toLocaleString()}</td>
-                <td className="py-2 px-4 border-b">{new Date(ticket.updatedAt).toLocaleString()}</td>
                 <td className="py-2 px-4 border-b">
                   <button
                     className="bg-blue-500 text-white px-2 py-1 rounded mr-2"
@@ -114,18 +110,6 @@ const BookingDetails = () => {
                 <tr>
                   <td className="py-2 px-4 border-b">Mô tả</td>
                   <td className="py-2 px-4 border-b">{selectedTicket.description}</td>
-                </tr>
-                <tr>
-                  <td className="py-2 px-4 border-b">Số lượng</td>
-                  <td className="py-2 px-4 border-b">{selectedTicket.amount}</td>
-                </tr>
-                <tr>
-                  <td className="py-2 px-4 border-b">Ngày tạo</td>
-                  <td className="py-2 px-4 border-b">{new Date(selectedTicket.createdAt).toLocaleString()}</td>
-                </tr>
-                <tr>
-                  <td className="py-2 px-4 border-b">Ngày cập nhật</td>
-                  <td className="py-2 px-4 border-b">{new Date(selectedTicket.updatedAt).toLocaleString()}</td>
                 </tr>
               </tbody>
             </table>
