@@ -1,9 +1,6 @@
 'use strict';
-const {
-  Model
-} = require('sequelize');
-const User = require('../models/User.js')
-const ReceiptDetail = require('./ReceiptDetail');
+const { Model } = require('sequelize');
+
 module.exports = (sequelize, DataTypes) => {
   class Receipt extends Model {
     static associate(models) {
@@ -15,11 +12,9 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: 'receiptId',
         as: 'receiptDetails'
       });
-      // define association here
-      this.belongsTo(models.User, {foreignKey: {field: 'customer_id'}});
-      this.hasMany(models.ReceiptDetail, {foreignKey: "receiptId"});
     }
   }
+  
   Receipt.init({
     id: {
       type: DataTypes.UUID,
@@ -62,5 +57,6 @@ module.exports = (sequelize, DataTypes) => {
     modelName: 'Receipt',
     tableName: 'receipt',
   });
+  
   return Receipt;
 };

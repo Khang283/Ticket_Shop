@@ -1,4 +1,4 @@
-const { TicketType } = require('../models');
+const { TicketType } = require('../db/models');
 
 const getTicketTypes = async (req, res) => {
   try {

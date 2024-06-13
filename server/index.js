@@ -10,7 +10,6 @@ const cors = require('cors');
 app.use(express.json());
 
 const bodyParser = require('body-parser');
-const bookingPreviewRoutes = require('./routes/bookingPreviewRoutes');
 
 app.use(cors());
 
@@ -18,7 +17,6 @@ app.use(morgan(process.env.LOGGING_FORMAT));
 app.use('/api/v1',routes);
 
 app.use(bodyParser.json());
-app.use('/api/booking-preview', bookingPreviewRoutes);
 
 //Error handling, must be put at the end of middlewares pipe
 errorHandling(app);
