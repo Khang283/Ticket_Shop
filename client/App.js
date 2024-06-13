@@ -3,8 +3,7 @@ import App from "./src/App";
 import Ticket from "./src/pages/Ticket";
 import UserContent from "./src/pages/UserProfile/UserProf";
 import { Route } from "react-router-dom";
-import BookingDetails from "./src/pages/Booking/BookingDetails";
-
+import BookingPreview from "./src/pages/Booking/BookingPreview";
 function App() {
 
     <div>
@@ -21,7 +20,7 @@ function App() {
             </Route>
             
             <Route path="booking"> 
-              <Route index element={<BookingDetails/>}/>
+              <Route index element={<BookingPreview/>}/>
             </Route>
 
           </Route>
