@@ -18,7 +18,6 @@ app.use('/', ticket_route);
 app.use('/', receipt_router);
 app.use('/', bookingPreviewRoutes);
 
-
-app.use('/auth', auth_route)
+app.use('/auth', auth_route);
 
 module.exports = app;
