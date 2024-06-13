@@ -1,22 +1,18 @@
 import React from "react";
 
-import { Routes, Route, useNavigate } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import { privateRoutes } from "..";
-
+import AuthGuard from "../AuthGuard/AuthGuard";
 export default function PrivateRoutes() {
-    const user = true
-    const navigate = useNavigate()
-    if (!user) {
-        console.log("Navigate to Login Page")
-        navigate('./login')
-    } else {
-        return (
-            <>
-                <Routes>
-                    {privateRoutes.map((route, index) => {
-                        const Page = route.component;
-                        let Layout = route.layout;
-                        return (
+
+    return (
+        <>
+            <Routes>
+                {privateRoutes.map((route, index) => {
+                    const Page = route.component;
+                    let Layout = route.layout;
+                    return (
+                        <Route exact element={<AuthGuard />}>
                             <Route
                                 key={index}
                                 path={route.path}
@@ -26,13 +22,15 @@ export default function PrivateRoutes() {
                                         <Page />
                                     </Layout>
 
+
+
                                 }
-                            />
-                        );
-                    })}
-                </Routes>
-            </>
-        )
-    }
+                            /></Route>
+                    );
+                })}
+            </Routes>
+        </>
+    )
+
 
 }

@@ -1,5 +1,5 @@
-import React from "react";
-import Logo from "../../assets/logo.png";
+import React, { useEffect, useState } from "react";
+import Logo from "../../assets/logo.png"
 import { Link } from "react-router-dom";
 import {
     Disclosure,
@@ -12,7 +12,7 @@ import {
     Transition,
 } from '@headlessui/react';
 import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline';
-import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle'; import authApi from "../../api/authAPI";
 
 let navigation = [
     { name: 'Home', to: '/login', current: true },
@@ -21,12 +21,47 @@ let navigation = [
     { name: 'Contact', to: '#', current: false },
 ];
 
+let navigation = [
+    { name: 'Home', to: '/home', current: true },
+    { name: 'About', to: '/about', current: false },
+    { name: 'Booking', to: '/booking', current: false },
+    { name: 'Contact', to: '/contact', current: false },
+]
 function classNames(...classes) {
     return classes.filter(Boolean).join(' ');
 }
 
 export default function Header() {
-    const isLogin = false;
+
+    const [isLogin, setIsLogin] = useState(false)
+
+    useEffect(() => {
+        const token = window.localStorage.getItem('accesToken');
+        setIsLogin(Boolean(token))
+    }, [])
+
+    const Logout = async () => {
+        try {
+            const data = {
+                "refreshToken": window.localStorage.getItem("refreshToken")
+            }
+            console.log(data);
+            const resp = await authApi.logout(data);
+            console.log(resp);
+            if (resp.status === 200) {
+                window.localStorage.removeItem("accesToken");
+                window.localStorage.removeItem("refreshToken");
+                window.localStorage.removeItem("role");
+                setIsLogin(false)
+                navigate('/home')
+            } else {
+
+            }
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
     const refreshCurrentPage = (item) => {
         navigation = navigation.map(navItem => ({
             ...navItem,
@@ -131,12 +166,15 @@ export default function Header() {
                                                     </MenuItem>
                                                     <MenuItem>
                                                         {({ focus }) => (
-                                                            <Link
-                                                                to="/sigout"
-                                                                className={classNames(focus ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
+                                                            <button
+                                                                onClick={() => {
+                                                                    Logout();
+                                                                }}
+
+                                                                className={classNames(focus ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700 w-48 text-left')}
                                                             >
                                                                 Sign out
-                                                            </Link>
+                                                            </button>
                                                         )}
                                                     </MenuItem>
                                                 </MenuItems>

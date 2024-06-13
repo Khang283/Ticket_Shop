@@ -3,12 +3,12 @@ import Sidebar from "../../Sidebar/sidebar";
 
 function AdminLayout({ children }) {
     return (
-        <div>
+        <>
             <Sidebar />
-            <div>
+            <div class="p-4 sm:ml-64">
                 {children}
             </div>
-        </div>
+        </>
     )
 }
 
