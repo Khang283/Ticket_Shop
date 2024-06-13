@@ -1,0 +1,34 @@
+/* BookingPreview.css */
+.container {
+    max-width: 800px;
+    margin: auto;
+  }
+  
+  .ticket-table {
+    margin-top: 20px;
+  }
+  
+  .ticket-table th,
+  .ticket-table td {
+    text-align: center;
+    vertical-align: middle;
+  }
+  
+  .ticket-table th {
+    background-color: #f8f9fa;
+  }
+  
+  .ticket-table td button {
+    margin: 2px 0;
+  }
+  
+  .ticket-table .btn-info {
+    background-color: #17a2b8;
+    border-color: #17a2b8;
+  }
+  
+  .ticket-table .btn-primary {
+    background-color: #007bff;
+    border-color: #007bff;
+  }
+  

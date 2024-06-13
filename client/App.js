@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
+import 'bootstrap/dist/css/bootstrap.min.css';
 import App from "./src/App";
 import Ticket from "./src/pages/Ticket";
 import UserContent from "./src/pages/UserProfile/UserProf";
 import { Route } from "react-router-dom";
-import BookingDetails from "./src/pages/Booking/BookingDetails";
-
+import BookingPreview from "./src/pages/Booking/BookingPreview";
 function App() {
 
     <div>
