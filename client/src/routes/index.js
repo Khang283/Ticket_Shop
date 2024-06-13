@@ -28,7 +28,7 @@ const publicRoutes = [
 const privateRoutes = [
     { path: "/user", component: User, layout: AdminLayout },
     { path: "/ticket", component: NotFoundPage, layout: AdminLayout },
-    { path: "/register", component: RegisterPage, layout: UserLayout },
+    // { path: "/register", component: RegisterPage, layout: UserLayout },
     { path: "/booking", component: Booking, layout: UserLayout },
     { path: "/bookingQR", component: BookingQR, layout: UserLayout },
     { path: "/receipts/:id", component: Receipt, layout: UserLayout },
