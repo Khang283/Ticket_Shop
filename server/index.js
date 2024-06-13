@@ -9,6 +9,9 @@ const db = require('./db/index');
 const cors = require('cors');
 app.use(express.json());
 
+const bookingPreviewRoutes = require('./routes/bookingPreviewRoutes');
+const response = await axios.get('/api/booking-preview');
+app.use(bookingPreviewRoutes);
 
 app.use(cors());
 
@@ -17,6 +20,7 @@ app.use('/api/v1',routes);
 
 //Error handling, must be put at the end of middlewares pipe
 errorHandling(app);
+app.use('/api', ticketTypeRoutes);
 
 let server = app.listen(PORT || 3000, ()=>{
     console.log(`Server listen on port ${server.address().port}`)

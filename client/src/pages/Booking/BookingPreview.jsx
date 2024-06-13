@@ -1,33 +1,30 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Modal from 'react-modal';
-import './Modal.css'
-// Dummy data for demonstration
-const ticketTypes = [
-  {
-    id: 1,
-    name: 'VIP Ticket',
-    createdAt: '2023-06-01T12:34:56Z',
-    updatedAt: '2023-06-10T12:34:56Z',
-    price: 100,
-    sales: 50,
-    description: 'VIP ticket with exclusive benefits',
-    amount: 200
-  },
-  {
-    id: 2,
-    name: 'Standard Ticket',
-    createdAt: '2023-06-02T12:34:56Z',
-    updatedAt: '2023-06-11T12:34:56Z',
-    price: 50,
-    sales: 150,
-    description: 'Standard ticket',
-    amount: 500
-  },
-  // Add more tickets as needed
-];
+import axios from 'axios';
+import './Modal.css';
 
-const BookingDetails = () => {
+const BookingPreview = () => {
+  const [ticketTypes, setTicketTypes] = useState([]);
   const [selectedTicket, setSelectedTicket] = useState(null);
+
+  useEffect(() => {
+    const fetchTicketTypes = async () => {
+      try {
+        const response = await axios.get('/api/booking-preview');
+        if (Array.isArray(response.data)) {
+          setTicketTypes(response.data);
+        } else {
+          console.error('Unexpected response data', response.data);
+          setTicketTypes([]);
+        }
+      } catch (error) {
+        console.error('Error fetching ticket types', error);
+        setTicketTypes([]);
+      }
+    };
+
+    fetchTicketTypes();
+  }, []);
 
   const handleViewDetails = (ticket) => {
     setSelectedTicket(ticket);
@@ -39,7 +36,7 @@ const BookingDetails = () => {
 
   return (
     <div className="container mx-auto p-4">
-      <h1 className="text-2xl font-bold mb-4">Booking Details</h1>
+      <h1 className="text-2xl font-bold mb-4">Booking Preview</h1>
       <div className="overflow-x-auto">
         <table className="min-w-full bg-white border border-gray-200 table-fixed">
           <thead className="bg-gray-100">
@@ -126,4 +123,4 @@ const BookingDetails = () => {
   );
 };
 
-export default BookingDetails;
+export default BookingPreview;
