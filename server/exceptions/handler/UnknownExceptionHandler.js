@@ -5,7 +5,7 @@ const UnknownExceptionHandler = (err, req, res, next)=>{
         console.log.apply(err.message);
         const msg = err.message || "Internal Server Error";
         const errStatus = err.status || 500;
-        return res.status(500).json({
+        res.status(500).json({
             message: msg,
             timestamp: Date.now(),
             status: errStatus,
@@ -13,7 +13,7 @@ const UnknownExceptionHandler = (err, req, res, next)=>{
         })
     }
     else{
-        res.status(500).send('Not Unknown Error');
+        res.status(500).send('Unknown Error');
     }
 }
 module.exports = UnknownExceptionHandler;

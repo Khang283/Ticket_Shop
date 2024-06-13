@@ -1,8 +1,12 @@
 import React, { useState } from "react";
 import Background from '../../assets/nha_tho_duc_ba.jpg'
 import './registerPageStyle.css'
+import { Link, useNavigate } from "react-router-dom";
+import authApi from "../../api/authAPI";
 
 export default function RegisterPage() {
+
+    const navigate = useNavigate()
 
     const [errorUsername, setErrorUsername] = useState(false)
     const [errorPhoneNumber, setErrorPhoneNumber] = useState(false)
@@ -63,17 +67,30 @@ export default function RegisterPage() {
         }
         console.log('send successfully!')
         const data = {
-            username,
-            fullName,
-            birthday,
-            gender,
-            email,
-            phoneNumber,
-            address,
-            password,
-            confirmPassword
+            "username": username,
+            "password": password,
+            "email": email,
+            "fullName": fullName,
+            "dob": birthday,
+            "gender": gender,
+            "role": "user",
+            "phoneNumber": phoneNumber,
+            "address": address
         }
-        resetInputs()
+        try {
+            const resp = await authApi.signup(data);
+            console.log(resp);
+            if (resp.status === 200) {
+                console.log("register successfully")
+                resetInputs()
+                navigate('/login')
+            } else {
+
+            }
+        } catch (error) {
+            console.log(error)
+        }
+
     }
     return (
         <div className="wrapperFormLogin"
@@ -215,7 +232,7 @@ export default function RegisterPage() {
 
                         <div class="flex flex-col items-center mt-3">
                             <p class="text-sm font-light text-gray-500 dark:text-gray-400">
-                                Already have an account? <a href="#" class="font-bold text-primary-600 hover:underline dark:text-primary-500">Login here</a>
+                                Already have an account? <Link to="/login" class="font-bold text-primary-600 hover:underline dark:text-primary-500">Login here</Link>
                             </p>
                         </div>
                     </form>
