@@ -17,10 +17,14 @@ const RevenueGraph = () => {
         }
         return a.month - b.month;
       });
+
       const newdata = data.map(item => ({
         ...item,
         monthYear: `${item.month}/${item.year}`,
+        total_revenue: parseFloat(item.total_revenue),
       }));
+
+
       console.log(newdata);
       setMonthlyRevenue(newdata);
       setMonthlyRevenueLoading(false);

@@ -79,7 +79,7 @@ const Dashboard = () => {
         <StatisticsCard title="Tổng Doanh Thu" value={totalRevenue.total_revenue + " đ"} />
         <StatisticsCard title="Tổng khách hàng" value={totalClient.client_count+ " khách hàng"} />
         <StatisticsCard title="Số Vé Đã Bán" value={totalTicket.total_ticket + " vé"} />
-        <StatisticsCard title="Doanh Thu Trung Bình Mỗi Vé" value={totalRevenue.total_revenue/totalTicket.total_ticket + " đ/vé"} />
+        <StatisticsCard title="Doanh Thu Trung Bình Mỗi Vé" value={(totalRevenue.total_revenue/totalTicket.total_ticket).toFixed(4) + " đ/vé"} />
       </div>
       <div className="mt-8">
         <RevenueGraph />
