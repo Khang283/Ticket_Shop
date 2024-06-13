@@ -17,7 +17,7 @@ import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 let navigation = [
     { name: 'Home', to: '/login', current: true },
     { name: 'About', to: '/register', current: false },
-    { name: 'Booking', to: '/booking-details', current: false },
+    { name: 'Booking', to: '/booking-preview', current: false },
     { name: 'Contact', to: '#', current: false },
 ];
 

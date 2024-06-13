@@ -21,7 +21,7 @@ function App() {
             </Route>
             
             <Route path="booking"> 
-              <Route index element={<BookingDetails/>}/>
+              <Route index element={<BookingPreview/>}/>
             </Route>
 
           </Route>
