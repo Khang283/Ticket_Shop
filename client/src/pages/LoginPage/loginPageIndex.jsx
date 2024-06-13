@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Background from '../../assets/nha_tho_duc_ba.jpg'
 import { Link, useNavigate } from "react-router-dom";
+import authApi from "../../api/authAPI";
 
 export default function LoginPage() {
 
@@ -12,12 +13,30 @@ export default function LoginPage() {
     const handleSubmit = async (event) => {
         event.preventDefault();
         const data = {
-            username,
-            password
+            "username": username,
+            "password": password
         }
-        window.localStorage.setItem("token", "abc");
-        navigate('/home')
+        try {
+            const resp = await authApi.login(data);
+            console.log(resp);
+            if (resp.status === 200) {
+                window.localStorage.setItem("accesToken", resp.data.accesToken);
+                window.localStorage.setItem("refreshToken", resp.data.refreshToken);
+                window.localStorage.setItem("role", resp.data.role);
+                if (resp.data.role === 'user') {
+                    navigate('/home')
+                }
+                if (resp.data.role === 'admin') {
+                    navigate('/user')
+                }
+            } else {
+
+            }
+        } catch (error) {
+            console.log(error)
+        }
     }
+
 
     return (
         <div className="wrapperFormLogin"
