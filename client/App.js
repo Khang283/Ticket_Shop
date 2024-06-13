@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import 'bootstrap/dist/css/bootstrap.min.css';
 import App from "./src/App";
 import Ticket from "./src/pages/Ticket";
 import UserContent from "./src/pages/UserProfile/UserProf";
