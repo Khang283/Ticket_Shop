@@ -1,0 +1,8 @@
+.innerFormLogin::-webkit-scrollbar {
+    display: none;
+}
+
+.innerFormLogin {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
