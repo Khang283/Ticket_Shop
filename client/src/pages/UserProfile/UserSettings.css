@@ -1,0 +1,80 @@
+.setting-content {
+    display: flex;
+    padding: 20px;
+    background-color: #f9f9f9;
+    min-height: 100vh;
+}
+
+.user-settings {
+    flex-grow: 1;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.user-settings h2 {
+    margin-bottom: 20px;
+    font-size: 1.5rem;
+    text-align: center;
+}
+
+.form-row {
+    margin-bottom: 15px;
+}
+
+.form-row label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #333;
+}
+
+.form-row input {
+    width: calc(100% - 10px); /* Adjust width to fit inside borders */
+    padding: 10px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+
+.form-row input[type="date"] {
+    width: 100%; /* Full width for date input */
+}
+
+button {
+    padding: 15px 30px; /* Increase padding for larger buttons */
+    margin: 15px 10px 0 0; /* Add more margin for spacing */
+    border: none;
+    border-radius: 5px;
+    font-size: 1.2rem; /* Increase font size for larger buttons */
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button.upd-btn {
+    background-color: #2ae700;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button.CPW-btn {
+    background-color: #f21400;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    opacity: 0.8;
+}
+
+button:active {
+    transform: scale(0.98);
+}

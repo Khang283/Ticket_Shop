@@ -10,6 +10,7 @@ import BookingQR from "../views/booking_QR/BookingQR";
 import Receipt from "../views/receipt/Receipt";
 import UserContent from "../pages/UserProfile/UserProf"; 
 import BookingPreview from "../pages/Booking/BookingPreview";
+import UserSettings from "../pages/UserProfile/UserSettings";
 
 const publicRoutes = [
     { path: "/", component: LoginPage, layout: UserLayout },
@@ -23,6 +24,7 @@ const privateRoutes = [
     { path: "/receipts/:id", component: Receipt, layout: UserLayout },
     { path: "/user", component: UserContent, layout: UserLayout },
     { path: "/booking-preview", component: BookingPreview, layout: UserLayout },
+    { path: "/user-settings", component: UserSettings, layout: UserLayout},
 ];
 
 export { publicRoutes, privateRoutes };

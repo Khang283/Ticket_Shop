@@ -5,7 +5,6 @@ import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import LocalActivityIcon from '@mui/icons-material/LocalActivity';
 import SettingsIcon from '@mui/icons-material/Settings';
 import HelpIcon from '@mui/icons-material/Help';
-import ContactSupportIcon from '@mui/icons-material/ContactSupport';
 import ContactPageIcon from '@mui/icons-material/ContactPage';
 import ExitToAppIcon from '@mui/icons-material/ExitToApp';
 
@@ -32,7 +31,7 @@ const UserSidebar = () => {
                     </button>
                 </li>
                 <li>
-                    <button onClick={() => navigate('/user/settings')}>
+                    <button onClick={() => navigate('/user-settings')}>
                         <SettingsIcon className="sidebar-icon" />
                         Cài đặt
                     </button>
