@@ -9,7 +9,7 @@ const UserContent = () => {
     useEffect(() => {
         const fetchUserData = async () => {
             try {
-                const response = await axios.get('http://localhost:5000/api/user/1'); // Sử dụng ID user thực tế
+                const response = await axios.get('http://localhost:5000/user/1'); //user id
                 setUserInfo(response.data);
             } catch (error) {
                 console.error('Error fetching user data:', error);
@@ -28,7 +28,7 @@ const UserContent = () => {
                 <div className="info-row"><span>Ngày sinh:</span> {userInfo.dob}</div>
                 <div className="info-row"><span>Địa chỉ:</span> {userInfo.address}</div>
                 <div className="info-row"><span>Email:</span> {userInfo.email}</div>
-                <div className="info-row"><span>SDT:</span> {userInfo.phone}</div>
+                <div className="info-row"><span>SĐT:</span> {userInfo.phone}</div>
             </div>
         </main>
     );
