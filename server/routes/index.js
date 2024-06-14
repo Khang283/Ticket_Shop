@@ -8,7 +8,7 @@ const booking_route = require('./booking_route');
 const ticket_route = require('./ticket_route');
 const receipt_router = require('./receipt_route');
 const bookingPreviewRoutes = require('./bookingPreviewRoute');
-
+const userProfileRoute = require('./userProfileRoute');
 
 app.use('/', dashboard_route);
 app.use('/', user_route);
@@ -17,6 +17,7 @@ app.use('/', booking_route);
 app.use('/', ticket_route);
 app.use('/', receipt_router);
 app.use('/', bookingPreviewRoutes);
+app.use('/', userProfileRoute); 
 
 app.use('/auth', auth_route);
 
