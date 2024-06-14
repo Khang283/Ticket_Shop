@@ -21,12 +21,6 @@ let navigation = [
     { name: 'Contact', to: '#', current: false },
 ];
 
-let navigation = [
-    { name: 'Home', to: '/home', current: true },
-    { name: 'About', to: '/about', current: false },
-    { name: 'Booking', to: '/booking', current: false },
-    { name: 'Contact', to: '/contact', current: false },
-]
 function classNames(...classes) {
     return classes.filter(Boolean).join(' ');
 }
