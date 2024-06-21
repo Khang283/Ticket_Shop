@@ -1,52 +1,30 @@
-const jwt = require('jsonwebtoken');
-const { User } = require('../db/models');
-const SECRET_KEY = process.env.SECRET_KEY;
+const db = require('../db/models/index');
 
-const verifyToken = (req, res, next) => {
-  const token = req.headers.authorization;
+class UserProfileController {
+    getUserProfile = async (req, res, next) => {
+        try {
+            const userId = req.id; // Lấy id của user từ decoded token đã được xử lý ở middleware verifyToken
 
-  if (!token) {
-    return res.status(401).json({ error: 'Unauthorized' });
-  }
+            // Tìm thông tin user trong cơ sở dữ liệu
+            const user = await db.User.findOne({
+                where: {
+                    id: userId
+                },
+                attributes: ['id', 'username', 'fullName', 'gender', 'dob', 'address', 'email', 'phoneNumber']
+                // Điều chỉnh attributes để chỉ lấy những thông tin cần thiết của user
+            });
 
-  const tokenWithoutBearer = token.replace('Bearer ', '');
+            if (!user) {
+                return res.status(404).json({ message: 'User not found' });
+            }
 
-  jwt.verify(tokenWithoutBearer, SECRET_KEY, (err, decoded) => {
-    if (err) {
-      return res.status(401).json({ error: 'Unauthorized' });
-    }
+            // Trả về thông tin user
+            return res.status(200).json(user);
+        } catch (error) {
+            console.error('Error fetching user profile:', error);
+            return res.status(500).json({ message: 'Server error' });
+        }
+    };
+}
 
-    req.userId = decoded.id;
-    next();
-  });
-};
-
-const getUserProfile = async (req, res) => {
-  try {
-    const userId = req.userId; // Extracted from token by the middleware
-    const user = await User.findByPk(userId, {
-      attributes: ['fullName', 'gender', 'dob', 'address', 'email', 'phoneNumber']
-    });
-
-    if (!user) {
-      return res.status(404).json({ error: 'User not found' });
-    }
-
-    res.json({
-      name: user.fullName,
-      gender: user.gender,
-      dob: user.dob,
-      address: user.address,
-      email: user.email,
-      phone: user.phoneNumber
-    });
-  } catch (error) {
-    console.error('Error fetching user data:', error);
-    res.status(500).json({ error: 'Internal Server Error' });
-  }
-};
-
-module.exports = {
-  verifyToken,
-  getUserProfile,
-};
+module.exports = new UserProfileController();
