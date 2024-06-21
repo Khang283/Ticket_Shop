@@ -105,6 +105,7 @@ const Booking = () => {
                 type="date"
                 value={date}
                 onChange={(e) => setDate(e.target.value)}
+                required
               />
               <p class="text-red-500 text-xs italic">Vui lòng không để trống.</p>
             </div>
@@ -121,6 +122,7 @@ const Booking = () => {
                 type="number"
                 value={quantity}
                 onChange={(e) => setQuantity(e.target.value)}
+                required
               />
               <p class="text-red-500 text-xs italic">Vui lòng không để trống.</p>
             </div>

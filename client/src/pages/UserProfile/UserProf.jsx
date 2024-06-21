@@ -9,7 +9,12 @@ const UserContent = () => {
     useEffect(() => {
         const fetchUserData = async () => {
             try {
-                const response = await axios.get('http://localhost:5000/user/1'); //user id
+                const token = localStorage.getItem('accesToken');
+                const response = await axios.get('http://localhost:5000/user/profile', {
+                    headers: {
+                        Authorization: `Bearer ${token}`
+                    }
+                });
                 setUserInfo(response.data);
             } catch (error) {
                 console.error('Error fetching user data:', error);
