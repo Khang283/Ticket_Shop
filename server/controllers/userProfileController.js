@@ -1,52 +1,20 @@
-const jwt = require('jsonwebtoken');
 const { User } = require('../db/models');
-const SECRET_KEY = process.env.SECRET_KEY;
 
-const verifyToken = (req, res, next) => {
-  const token = req.headers.authorization;
+class userProfileController {
+  getUserById = async (req, res) => {
+    try {
+      const { id } = req.params;
+      const customer = await User.findByPk(id);
+      if (!customer) {
+        return res.status(404).json({ error: "Cannot find" });
+      }
 
-  if (!token) {
-    return res.status(401).json({ error: 'Unauthorized' });
-  }
-
-  const tokenWithoutBearer = token.replace('Bearer ', '');
-
-  jwt.verify(tokenWithoutBearer, SECRET_KEY, (err, decoded) => {
-    if (err) {
-      return res.status(401).json({ error: 'Unauthorized' });
+      return res.status(201).json(customer);
+    } catch (error) {
+      console.log("Error: ", error);
+      return res.status(500).json({ error: "Internal Server Error" });
     }
-
-    req.userId = decoded.id;
-    next();
-  });
-};
-
-const getUserProfile = async (req, res) => {
-  try {
-    const userId = req.userId; // Extracted from token by the middleware
-    const user = await User.findByPk(userId, {
-      attributes: ['fullName', 'gender', 'dob', 'address', 'email', 'phoneNumber']
-    });
-
-    if (!user) {
-      return res.status(404).json({ error: 'User not found' });
-    }
-
-    res.json({
-      name: user.fullName,
-      gender: user.gender,
-      dob: user.dob,
-      address: user.address,
-      email: user.email,
-      phone: user.phoneNumber
-    });
-  } catch (error) {
-    console.error('Error fetching user data:', error);
-    res.status(500).json({ error: 'Internal Server Error' });
   }
-};
+}
 
-module.exports = {
-  verifyToken,
-  getUserProfile,
-};
+module.exports = new userProfileController();
