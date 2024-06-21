@@ -1,0 +1,202 @@
+{
+    "type": "FeatureCollection",
+    "features": [
+      {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [106.69918275661938, 10.779515856919428, 36.8]
+        },
+        "properties": {
+          "height": 3.3,
+          "color": "blue",
+          "diameter": 0.1
+        }
+      },
+      {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [106.69923118932361, 10.779470329327994, 36.8]
+        },
+        "properties": {
+          "height": 3.3,
+          "color": "blue",
+          "diameter": 0.1
+        }
+      }
+      ,
+      {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [106.69919523150045, 10.779528910344707, 36.8]
+        },
+        "properties": {
+          "height": 3.3,
+          "color": "blue",
+          "diameter": 0.1
+        }
+      },
+      {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [106.69924393600436, 10.77948388735403, 36.8]
+        },
+        "properties": {
+          "height": 3.3,
+          "color": "blue",
+          "diameter": 0.1
+        }
+      }
+      ,
+      {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [106.69923074028542, 10.77953111387455, 36.8]
+        },
+        "properties": {
+          "height": 3.3,
+          "color": "blue",
+          "diameter": 0.1
+        }
+      },
+      {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [106.69918301515654, 10.779480859756259, 36.8]
+        },
+        "properties": {
+          "height": 3.3,
+          "color": "blue",
+          "diameter": 0.1
+        }
+      },
+      {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [106.69924373495671, 10.779518944668153, 36.8]
+        },
+        "properties": {
+          "height": 3.3,
+          "color": "blue",
+          "diameter": 0.1
+        }
+      },
+      {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [106.69919608058395, 10.77946855153327, 36.8]
+        },
+        "properties": {
+          "height": 3.3,
+          "color": "blue",
+          "diameter": 0.1
+        }
+      }
+      ,
+      {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [106.69934836000822, 10.779593647447232, 36.8]
+        },
+        "properties": {
+          "height": 3.3,
+          "color": "blue",
+          "diameter": 0.1
+        }
+      },
+      {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [106.69929992730398, 10.779639175038666, 36.8]
+        },
+        "properties": {
+          "height": 3.3,
+          "color": "blue",
+          "diameter": 0.1
+        }
+      }
+      ,
+      {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [106.69933588512714, 10.779580594021953, 36.8]
+        },
+        "properties": {
+          "height": 3.3,
+          "color": "blue",
+          "diameter": 0.1
+        }
+      },
+      {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [106.69928718062323, 10.77962561701263, 36.8]
+        },
+        "properties": {
+          "height": 3.3,
+          "color": "blue",
+          "diameter": 0.1
+        }
+      }
+      ,
+      {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [106.69930037634218, 10.77957839049211, 36.8]
+        },
+        "properties": {
+          "height": 3.3,
+          "color": "blue",
+          "diameter": 0.1
+        }
+      },
+      {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [106.69934810147106, 10.779628644610401, 36.8]
+        },
+        "properties": {
+          "height": 3.3,
+          "color": "blue",
+          "diameter": 0.1
+        }
+      },
+      {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [106.69928738167089, 10.779590559698507, 36.8]
+        },
+        "properties": {
+          "height": 3.3,
+          "color": "blue",
+          "diameter": 0.1
+        }
+      },
+      {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [106.69933503604365, 10.77964095283339, 36.8]
+        },
+        "properties": {
+          "height": 3.3,
+          "color": "blue",
+          "diameter": 0.1
+        }
+      }
+    ]
+  }

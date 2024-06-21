@@ -19,6 +19,7 @@ let navigation = [
     { name: 'About', to: '/about', current: false },
     { name: 'Booking', to: '/booking-preview', current: false },
     { name: 'Contact', to: '/contact', current: false },
+    { name: 'Model', to: '/model', current: false},
 ]
 
 function classNames(...classes) {

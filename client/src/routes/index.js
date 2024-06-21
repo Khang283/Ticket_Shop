@@ -18,6 +18,7 @@ import Dashboard from "../views/dashboard/Dashboard";
 import Contact from '../pages/Contact/Contact';
 import ManageTicketPage from '../views/Ticket/Ticket';
 import ManageTicketTypePage from '../views/Ticket_Type/Ticket_Type';
+import Model from "../pages/Model/Model";
 
 const publicRoutes = [
     { path: "/", component: HomePage, layout: UserLayout },
@@ -31,7 +32,7 @@ const publicRoutes = [
     { path: "/setting", component: NotFoundPage, layout: UserLayout },
     { path: "/profile", component: UserContent, layout: UserLayout },
     { path: "/register", component: RegisterPage, layout: UserLayout },
-
+    { path: "/model", component: Model, layout: UserLayout},
 ];
 
 const privateRoutes = [
