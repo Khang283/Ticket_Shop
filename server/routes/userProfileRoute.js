@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
-const userProfileController = require('../controllers/userProfileController');
+const { verifyToken, getUserProfile } = require('../controllers/userProfileController');
 
-router.get('/user/:id', userProfileController.getUserProfile);
+router.get('/user/profile', verifyToken, getUserProfile);
 
 module.exports = router;
