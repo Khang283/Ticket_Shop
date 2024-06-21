@@ -16,7 +16,7 @@ import AccountCircleIcon from '@mui/icons-material/AccountCircle'; import authAp
 
 let navigation = [
     { name: 'Trang Chủ', to: '/home', current: true },
-    { name: 'Đặt Vé', to: '/booking', current: false },
+    { name: 'Đặt Vé', to: '/booking-preview', current: false },
     { name: 'Về Chúng Tôi', to: '/about', current: false },
     { name: 'Liên Hệ', to: '/contact', current: false },
 ]
