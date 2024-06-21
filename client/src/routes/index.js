@@ -10,24 +10,26 @@ import BookingQR from "../views/booking_QR/BookingQR";
 import Receipt from "../views/receipt/Receipt";
 import UserContent from "../pages/UserProfile/UserProf"; 
 import BookingPreview from "../pages/Booking/BookingPreview";
-
+import HomePage from '../pages/HomePage/HomePage';
 import Receipts from "../views/admin/receipt/Receipts";
-
+import About from '../pages/About/About';
 import User from "../views/User/User";
 import Dashboard from "../views/dashboard/Dashboard";
-
+import Contact from '../pages/Contact/Contact';
 
 const publicRoutes = [
-    { path: "/", component: NotFoundPage, layout: UserLayout },
-    { path: "/home", component: NotFoundPage, layout: UserLayout },
-    { path: "/about", component: NotFoundPage, layout: UserLayout },
+    { path: "/", component: HomePage, layout: UserLayout },
+    { path: "/home", component: HomePage, layout: UserLayout },
+    { path: "/about", component: About, layout: UserLayout },
     { path: "/login", component: LoginPage, layout: DefaultLayout },
-    // { path: "/booking", component: Booking, layout: UserLayout },
+    { path: "/contact", component: Contact, layout: UserLayout},
+    { path: "/booking", component: Booking, layout: UserLayout },
     { path: "/contact", component: NotFoundPage, layout: UserLayout },
     { path: "/register", component: RegisterPage, layout: DefaultLayout },
     { path: "/setting", component: NotFoundPage, layout: UserLayout },
     { path: "/profile", component: UserContent, layout: UserLayout },
     { path: "/register", component: RegisterPage, layout: UserLayout },
+
 ];
 
 const privateRoutes = [

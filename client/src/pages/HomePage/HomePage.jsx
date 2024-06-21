@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import HomePageImg1 from './assets/Homepage-NhaThoDucBa-1.png'
-import Danhgiakhachhang from './assets/Danhgiakhachhang.png'
-import Thapchuong from './assets/Thapchuong.png'
-import Vatlieu from './assets/Vatlieu.png'
-import Thietke from './assets/Thietke.png'
-import Carillon from './assets/Carillon.png'
+import HomePageImg1 from '../../assets/Homepage-NhaThoDucBa-1.png'
+import Danhgiakhachhang from '../../assets/Danhgiakhachhang.png'
+import Thapchuong from '../../assets/Thapchuong.png'
+import Vatlieu from '../../assets/Vatlieu.png'
+import Thietke from '../../assets/Thietke.png'
+import Carillon from '../../assets/Carillon.png'
+
 
 function MainContent() {
   return (
@@ -165,7 +166,6 @@ function CustomerReviewSection() {
 function MyComponent() {
   return (
     <div className="flex flex-col bg-white">
-      <Navbar />
       <MainContent />
       <section className="self-center mt-8 w-full max-w-[1809px] max-md:max-w-full">
   <div className="flex gap-0 max-md:flex-col max-md:gap-0">
@@ -204,7 +204,6 @@ function MyComponent() {
       <HighlightsSection />
       <CustomerReviewSection />
       <ContactSection />
-      <Footer />
     </div>
   );
 }

@@ -29,7 +29,6 @@ StaffMember.propTypes = {
 
 const MyComponent = () => (
   <div className="flex flex-col bg-white">
-    <Navbar />
     <section className="flex overflow-hidden relative flex-col items-center self-center px-16 pb-20 mt-44 w-full text-center max-w-[1575px] min-h-[712px] max-md:px-5 max-md:mt-10 max-md:max-w-full">
       <Image src="https://cdn.builder.io/api/v1/image/assets/TEMP/590c7ce4aaae14c9c7c7bd032feb0a78b3c72c747fdee1b239026655b29d1650?apiKey=406e425c58704709985eea4d57b2c876&" alt="" className="object-cover absolute inset-0 size-full" />
       <div className="flex relative z-10 flex-col px-16 py-16 mt-0 mb-80 max-w-full bg-[#AF8260] w-[830px] max-md:px-5 max-md:mb-10">
@@ -165,7 +164,6 @@ const MyComponent = () => (
         </div>
       </div>
     </section>
-    <Footer/>
   </div>
 );
 

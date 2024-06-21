@@ -17,7 +17,6 @@ const ContactFormField = ({ label, id, type = "text", className = "", ...props }
 
 const App = () => (
   <>
-  <Navbar />
   <div className="flex flex-col items-center bg-white">
     <section className="flex overflow-hidden relative flex-col items-center px-16 pb-20 mt-44 w-full text-center max-w-[1575px] min-h-[712px] max-md:px-5 max-md:mt-10 max-md:max-w-full">
       <img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/9ce4a0e78cb39e2c4789121317d2a0cebe95e97e0299b48a936e2c32dfe0d525?apiKey=406e425c58704709985eea4d57b2c876&" alt="Background" className="object-cover absolute inset-0 size-full" />
@@ -47,7 +46,6 @@ const App = () => (
         </div>
       </form>
     </main>
-    <Footer />
   </div>
   </>
 );
