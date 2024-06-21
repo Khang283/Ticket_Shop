@@ -9,23 +9,29 @@ export default function Footer() {
                     <div class="md:flex md:justify-between">
                         <div class="mb-6 md:mb-0">
                             <Link to="/home" class="flex items-center">
-                                <img src={Logo} class="mr-3 h-100" alt="FlowBite Logo" />
+                                <img src={Logo} class="mr-3 h-200" alt="FlowBite Logo" />
                             </Link>
                         </div>
                         <div class="grid grid-cols-2 gap-8 sm:gap-6 sm:grid-cols-3">
                             <div>
-                                <h2 class="mb-6 text-sm font-semibold uppercase dark:text-white">Resources</h2>
+                                <h2 class="mb-6 text-sm font-semibold uppercase dark:text-white">Thông Tin Thêm</h2>
                                 <ul class="text-gray-300 dark:text-gray-400">
                                     <li class="mb-4">
-                                        <Link to="/about" class="hover:underline">About</Link>
+                                        <Link to="/home" class="hover:underline">Trang Chủ</Link>
+                                    </li>
+                                    <li class="mb-4">
+                                        <Link to="/booking" class="hover:underline">Đặt Vé</Link>
+                                    </li>
+                                    <li class="mb-4">
+                                        <Link to="/about" class="hover:underline">Về Chúng Tôi</Link>
                                     </li>
                                     <li>
-                                        <Link to="/contact" class="hover:underline">Contact</Link>
+                                        <Link to="/contact" class="hover:underline">Liên Hệ</Link>
                                     </li>
                                 </ul>
                             </div>
 
-                            <div>
+                            {/* <div>
                                 <h2 class="mb-6 text-sm font-semibold text-white uppercase dark:text-white">Legal</h2>
                                 <ul class="text-gray-300 dark:text-gray-400">
                                     <li class="mb-4">
@@ -35,7 +41,7 @@ export default function Footer() {
                                         <Link to="#" class="hover:underline">Terms &amp; Conditions</Link>
                                     </li>
                                 </ul>
-                            </div>
+                            </div> */}
                         </div>
                         <div class="flex flex-col">
                             <h2 class="mb-6 text-sm font-semibold text-white uppercase dark:text-white">Nhà thờ Đức Bà</h2>
