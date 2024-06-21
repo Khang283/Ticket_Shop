@@ -16,6 +16,8 @@ import About from '../pages/About/About';
 import User from "../views/User/User";
 import Dashboard from "../views/dashboard/Dashboard";
 import Contact from '../pages/Contact/Contact';
+import ManageTicketPage from '../views/Ticket/Ticket';
+import ManageTicketTypePage from '../views/Ticket_Type/Ticket_Type';
 
 const publicRoutes = [
     { path: "/", component: HomePage, layout: UserLayout },
@@ -33,8 +35,9 @@ const publicRoutes = [
 ];
 
 const privateRoutes = [
-    { path: "/user", component: User, layout: AdminLayout },
-    { path: "/ticket", component: NotFoundPage, layout: AdminLayout },
+    { path: "/manage-users", component: User, layout: AdminLayout },
+    { path: "/manage-tickets", component: ManageTicketPage, layout: AdminLayout },
+    { path: "/manage-tickettypes", component: ManageTicketTypePage, layout: AdminLayout},
     // { path: "/admin", component: NotFoundPage, layout: AdminLayout },
     { path: "/dashboard", component: Dashboard, layout: AdminLayout },
     { path: "/booking", component: Booking, layout: UserLayout },
@@ -44,7 +47,7 @@ const privateRoutes = [
     { path: "/booking-preview", component: BookingPreview, layout: UserLayout },
 
     
-    { path: "/receipts", component: Receipts, layout: AdminLayout},
+    { path: "/manage-receipts", component: Receipts, layout: AdminLayout},
 ];
 
 export { publicRoutes, privateRoutes };
