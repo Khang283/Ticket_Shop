@@ -1,8 +1,29 @@
+const jwt = require('jsonwebtoken');
 const { User } = require('../db/models');
+const SECRET_KEY = process.env.SECRET_KEY;
+
+const verifyToken = (req, res, next) => {
+  const token = req.headers.authorization;
+
+  if (!token) {
+    return res.status(401).json({ error: 'Unauthorized' });
+  }
+
+  const tokenWithoutBearer = token.replace('Bearer ', '');
+
+  jwt.verify(tokenWithoutBearer, SECRET_KEY, (err, decoded) => {
+    if (err) {
+      return res.status(401).json({ error: 'Unauthorized' });
+    }
+
+    req.userId = decoded.id;
+    next();
+  });
+};
 
 const getUserProfile = async (req, res) => {
   try {
-    const userId = req.params.id;
+    const userId = req.userId; // Extracted from token by the middleware
     const user = await User.findByPk(userId, {
       attributes: ['fullName', 'gender', 'dob', 'address', 'email', 'phoneNumber']
     });
@@ -26,5 +47,6 @@ const getUserProfile = async (req, res) => {
 };
 
 module.exports = {
+  verifyToken,
   getUserProfile,
 };
