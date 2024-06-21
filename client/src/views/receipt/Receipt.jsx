@@ -5,6 +5,7 @@ import axios from "axios";
 import { format } from 'date-fns';
 const Receipt = () => {
   const { id } = useParams(); //lấy id từ url
+  const navigate = useNavigate();
 
   const [ticket, setTicket] = useState(); 
   const [price, setPrice] = useState();
@@ -177,6 +178,7 @@ const Receipt = () => {
         
           class="block bg-blue-500 uppercase tracking-wide hover:bg-blue-700 tracking-wide text-white font-bold py-2 px-4 rounded-full mb-2 mx-auto"
           style={{ marginBottom: 10, backgroundColor: "rgb(128 61 59 / 100%)" }}
+          onClick={() => navigate("/booking-preview")}
         >
           Trang đặt vé
         </button>
