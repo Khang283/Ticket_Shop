@@ -17,7 +17,7 @@ import AccountCircleIcon from '@mui/icons-material/AccountCircle'; import authAp
 let navigation = [
     { name: 'Home', to: '/home', current: true },
     { name: 'About', to: '/about', current: false },
-    { name: 'Booking', to: '/booking', current: false },
+    { name: 'Booking', to: '/booking-preview', current: false },
     { name: 'Contact', to: '/contact', current: false },
 ]
 

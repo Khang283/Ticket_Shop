@@ -45,7 +45,6 @@ const privateRoutes = [
     { path: "/receipts/:id", component: Receipt, layout: UserLayout },
     // { path: "/user", component: UserContent, layout: UserLayout },
     { path: "/booking-preview", component: BookingPreview, layout: UserLayout },
-
     
     { path: "/manage-receipts", component: Receipts, layout: AdminLayout},
 ];
