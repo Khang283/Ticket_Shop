@@ -11,13 +11,12 @@ const Booking = () => {
 
   const [quantity, setQuantity] = useState(1);
   const [date, setDate] = useState(null);
-  const [customerId, setCustomerId] = useState("35c241b9-2783-4ffa-80e0-0f669855101d"); //chờ xong phần đăng nhập lấy jwt
 
   const navigate = useNavigate();
 
   const proceedPayment = async () => {
     if (date!=null && quantity != 0) {
-      navigate("/bookingQR", { replace: true, state: { ticketTypeId, price, quantity, date, customerId } });
+      navigate("/bookingQR", { replace: true, state: { ticketTypeId, price, quantity, date} });
     }
     else {
       alert('Please fill out all the fields');
@@ -48,7 +47,7 @@ const Booking = () => {
                 class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2 mx-auto"
                 for="grid-first-name"
               >
-                Hi, user's fullname
+                Xin chào quý khách hàng
               </label>
               
             </div>
@@ -62,7 +61,7 @@ const Booking = () => {
                 class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
                 for="grid-last-name"
               >
-                Ticket
+                Tên vé:
               </label>
               <input
                 class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
@@ -77,7 +76,7 @@ const Booking = () => {
                 class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
                 for="grid-last-name"
               >
-                Price
+                Đơn giá:
               </label>
               <input
                 class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
@@ -98,7 +97,7 @@ const Booking = () => {
                 class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
                 for="grid-last-name"
               >
-                Date
+                Chọn ngày:
               </label>
               <input
                 class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
@@ -107,14 +106,14 @@ const Booking = () => {
                 value={date}
                 onChange={(e) => setDate(e.target.value)}
               />
-              <p class="text-red-500 text-xs italic">Please fill out this field.</p>
+              <p class="text-red-500 text-xs italic">Vui lòng không để trống.</p>
             </div>
             <div class="w-full md:w-1/2 px-3">
               <label
                 class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
                 for="grid-last-name"
               >
-                Quantity
+                Số lượng:
               </label>
               <input
                 class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
@@ -123,7 +122,7 @@ const Booking = () => {
                 value={quantity}
                 onChange={(e) => setQuantity(e.target.value)}
               />
-              <p class="text-red-500 text-xs italic">Must not be 0.</p>
+              <p class="text-red-500 text-xs italic">Vui lòng không để trống.</p>
             </div>
           </div>
 
@@ -135,7 +134,7 @@ const Booking = () => {
               class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
               for="grid-last-name"
             >
-              Total
+              Tổng cộng
             </label>
             <input
               class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
@@ -157,7 +156,7 @@ const Booking = () => {
             proceedPayment();
           }}
         >
-          Purchase
+          Thanh toán
         </button>
         </div>
       </form>

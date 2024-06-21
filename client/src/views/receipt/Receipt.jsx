@@ -52,12 +52,12 @@ const Receipt = () => {
                 class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2 mx-auto"
                 for="grid-first-name"
               >
-                Hi, Nguyễn Phước An Vũ
+                Cảm ơn quý khách hàng
               </label>
             </div>
 
             <div class="w-full px-3 mx-auto">
-              <p class="text-gray-600 text-xs italic">Sincerely thanks for trusting and support</p>
+              <p class="text-gray-600 text-xs italic">Xin cảm ơn vì đã tin tưởng và ủng hộ</p>
             </div>
           </div>
           <div
@@ -72,7 +72,7 @@ const Receipt = () => {
                 class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
                 for="grid-last-name"
               >
-                Receipt's code
+                Mã đơn:
               </label>
               <input
                 class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
@@ -91,7 +91,7 @@ const Receipt = () => {
                 class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
                 for="grid-last-name"
               >
-                Ticket
+                Tên vé:
               </label>
               <input
                 class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
@@ -106,7 +106,7 @@ const Receipt = () => {
                 class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
                 for="grid-last-name"
               >
-                Price
+                Đơn giá:
               </label>
               <input
                 class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
@@ -127,7 +127,7 @@ const Receipt = () => {
                 class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
                 for="grid-last-name"
               >
-                Date
+                Ngày đi:
               </label>
               <input
                 class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
@@ -142,7 +142,7 @@ const Receipt = () => {
                 class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
                 for="grid-last-name"
               >
-                Quantity
+                Số lượng:
               </label>
               <input
                 class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
@@ -162,7 +162,7 @@ const Receipt = () => {
               class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
               for="grid-last-name"
             >
-              Total
+              Tổng cộng:
             </label>
             <input
               class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
