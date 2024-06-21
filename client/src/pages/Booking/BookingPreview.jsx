@@ -3,40 +3,6 @@ import { Modal, Button, Table } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './BookingPreview.css';
 
-// Mock data
-/*const ticketTypes = [
-  {
-    id: 1,
-    name: 'VIP Ticket',
-    price: 150.00,
-    amount: 20,
-    sales: 100,
-    description: 'This is a VIP ticket with premium benefits.',
-    createdAt: '2024-01-01T10:00:00Z',
-    updatedAt: '2024-01-10T12:00:00Z'
-  },
-  {
-    id: 2,
-    name: 'Standard Ticket',
-    price: 75.00,
-    amount: 50,
-    sales: 200,
-    description: 'This is a standard ticket.',
-    createdAt: '2024-01-02T11:00:00Z',
-    updatedAt: '2024-01-11T13:00:00Z'
-  },
-  {
-    id: 3,
-    name: 'Economy Ticket',
-    price: 35.00,
-    amount: 100,
-    sales: 300,
-    description: 'This is an economy ticket.',
-    createdAt: '2024-01-03T12:00:00Z',
-    updatedAt: '2024-01-12T14:00:00Z'
-  }
-];*/
-
 const BookingPreview = () => {
     const [ticketTypes, setTicketTypes] = useState([]);
     const [selectedTicket, setSelectedTicket] = useState(null);

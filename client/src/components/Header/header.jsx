@@ -14,6 +14,13 @@ import {
 import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle'; import authApi from "../../api/authAPI";
 
+let navigation = [
+    { name: 'Home', to: '/home', current: true },
+    { name: 'About', to: '/about', current: false },
+    { name: 'Booking', to: '/booking', current: false },
+    { name: 'Contact', to: '/contact', current: false },
+]
+
 function classNames(...classes) {
     return classes.filter(Boolean).join(' ');
 }

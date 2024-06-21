@@ -10,10 +10,12 @@ import BookingQR from "../views/booking_QR/BookingQR";
 import Receipt from "../views/receipt/Receipt";
 import UserContent from "../pages/UserProfile/UserProf"; 
 import BookingPreview from "../pages/Booking/BookingPreview";
+
 import Receipts from "../views/admin/receipt/Receipts";
 
 import User from "../views/User/User";
 import Dashboard from "../views/dashboard/Dashboard";
+
 
 const publicRoutes = [
     { path: "/", component: NotFoundPage, layout: UserLayout },
@@ -45,6 +47,7 @@ const privateRoutes = [
     { path: "/receipts/:id", component: Receipt, layout: UserLayout },
     // { path: "/user", component: UserContent, layout: UserLayout },
     { path: "/booking-preview", component: BookingPreview, layout: UserLayout },
+
     
     { path: "/receipts", component: Receipts, layout: AdminLayout},
 ];

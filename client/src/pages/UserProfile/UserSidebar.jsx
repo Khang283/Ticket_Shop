@@ -5,12 +5,26 @@ import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import LocalActivityIcon from '@mui/icons-material/LocalActivity';
 import SettingsIcon from '@mui/icons-material/Settings';
 import HelpIcon from '@mui/icons-material/Help';
-import ContactSupportIcon from '@mui/icons-material/ContactSupport';
 import ContactPageIcon from '@mui/icons-material/ContactPage';
 import ExitToAppIcon from '@mui/icons-material/ExitToApp';
+import authApi from '../../api/authAPI';
 
 const UserSidebar = () => {
     const navigate = useNavigate();
+
+    const handleLogout = async () => {
+        try {
+            await authApi.logout();
+            // Xóa token và thông tin đăng nhập từ localStorage
+            window.localStorage.removeItem('accesToken');
+            window.localStorage.removeItem('refreshToken');
+            window.localStorage.removeItem('role');
+            navigate('/login'); // Điều hướng người dùng đến trang đăng nhập
+        } catch (error) {
+            console.error('Error during logout:', error);
+            // Hiển thị thông báo lỗi nếu cần
+        }
+    };
 
     return (
         <aside className="user-sidebar">
@@ -32,7 +46,7 @@ const UserSidebar = () => {
                     </button>
                 </li>
                 <li>
-                    <button onClick={() => navigate('/user/settings')}>
+                    <button onClick={() => navigate('/user-settings')}>
                         <SettingsIcon className="sidebar-icon" />
                         Cài đặt
                     </button>
@@ -50,7 +64,7 @@ const UserSidebar = () => {
                     </button>
                 </li>
                 <li>
-                    <button onClick={() => navigate('/user/logout')}>
+                    <button onClick={handleLogout}>
                         <ExitToAppIcon className="sidebar-icon" />
                         Đăng xuất
                     </button>

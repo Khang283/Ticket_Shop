@@ -4,6 +4,8 @@ import Ticket from "./src/pages/Ticket";
 import UserContent from "./src/pages/UserProfile/UserProf";
 import { Route } from "react-router-dom";
 import BookingPreview from "./src/pages/Booking/BookingPreview";
+import UserSettings from "./src/pages/UserProfile/UserSettings";
+
 function App() {
 
     <div>
@@ -17,6 +19,10 @@ function App() {
 
             <Route path="user"> 
               <Route index element={<UserContent/>}/>
+            </Route>
+
+            <Route path="user-settings"> 
+              <Route index element={<UserSettings/>}/>
             </Route>
             
             <Route path="booking"> 
