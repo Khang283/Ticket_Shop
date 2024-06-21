@@ -13,21 +13,27 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      User.hasMany(Receipt);
-      User.hasMany(Cart)
+      User.hasMany(models.Receipt, { 
+        foreignKey: 'customerId', 
+        as: 'receipts' 
+      });
+      User.hasMany(models.Cart, { 
+        foreignKey: 'userId', 
+        as: 'carts' 
+      });
+      this.hasMany(models.Receipt, {foreignKey: 'customerId'});
+      this.hasMany(models.Cart, {as: 'cart', foreignKey: 'customerId'})
     }
   }
   User.init({
     id: {
-      type: DataTypes.UUID,
-      defaultValue: DataTypes.UUIDV4,
       allowNull: false,
-      primaryKey: true
+      primaryKey: true,
+      type: DataTypes.UUID,
     },
     username: {
       type: DataTypes.STRING,
-      allowNull: false,
-      unique: true,
+      allowNull: false
     },
     password: {
       type: DataTypes.STRING,
@@ -35,7 +41,8 @@ module.exports = (sequelize, DataTypes) => {
     },
     fullName: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: false,
+      field: 'full_name'
     },
     dob: {
       type: DataTypes.DATE,
@@ -52,18 +59,32 @@ module.exports = (sequelize, DataTypes) => {
     role: {
       type: DataTypes.ENUM,
       values: ['admin', 'user'],
-      defaultValue: 'admin',
-      allowNull: false
+      defaultValue: 'user'
     },
     phoneNumber: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: false,
+      field: 'phone_number'
     },
+    address: {
+      type: DataTypes.STRING,
+      allowNull: true
+    },
+    createdAt: {
+      allowNull: false,
+      type: DataTypes.DATE,
+      defaultValue: DataTypes.NOW,
+      field: 'created_at'
+    },
+    updatedAt: {
+      allowNull: false,
+      type: DataTypes.DATE,
+      field: 'updated_at'
+    }
   }, {
     sequelize,
     modelName: 'User',
     tableName: 'users',
-    timestamps: true
   });
   return User;
 };

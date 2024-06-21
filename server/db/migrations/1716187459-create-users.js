@@ -19,7 +19,7 @@ module.exports = {
       fullName: {
         type: Sequelize.STRING,
         allowNull: false,
-        field: 'fullname'
+        field: 'full_name'
       },
       dob: {
         type: Sequelize.DATE,

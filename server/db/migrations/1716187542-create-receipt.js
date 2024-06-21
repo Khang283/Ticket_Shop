@@ -1,4 +1,7 @@
 'use strict';
+
+const { UUIDV4 } = require('sequelize');
+
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
@@ -10,34 +13,34 @@ module.exports = {
       },
       date: {
         type: Sequelize.DATE,
-        allowNull: false
+        allowNull: false,
       },
       customerId: {
-        field: 'customer_id',
         type: Sequelize.UUID,
-        references: {
-            model: {
-                tableName: 'users'
-            },
-            key: 'id',
-        },
         allowNull: false,
+        references: {
+          model: {
+            tableName: 'users'
+          },
+          key: 'id'
+        },
         field: 'customer_id'
       },
       total: {
         type: Sequelize.DECIMAL,
+        allowNull: false,
         defaultValue: 0,
       },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,
-        defaultValue: Sequelize.NOW,
-        field: 'created_at'
+        field: 'created_at',
+        defaultValue: Sequelize.NOW
       },
       updatedAt: {
         allowNull: false,
         type: Sequelize.DATE,
-        field: 'updated_at'
+        field: 'updated_at',
       }
     });
   },
