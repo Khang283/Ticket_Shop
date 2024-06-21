@@ -1,0 +1,13 @@
+GET http://localhost:3000/api/v1/dashboard/monthly_revenue HTTP/1.1
+
+###
+GET http://localhost:3000/api/v1/dashboard/total_revenue
+
+###
+GET http://localhost:3000/api/v1/dashboard/total_ticket
+
+###
+GET http://localhost:3000/api/v1/dashboard/total_client
+
+###
+GET http://localhost:3000/api/v1

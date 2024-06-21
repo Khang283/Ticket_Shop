@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<meta name="viewport"
+	content="initial-scale=1,maximum-scale=1,user-scalable=no" />
+<title>3D - Building Map</title>
+
+<style>
+html, body, #viewDiv {
+	padding: 0;
+	margin: 0;
+	height: 100%;
+	width: 100%;
+}
+
+</style>
+
+<link rel="stylesheet"
+	href="https://js.arcgis.com/4.29/esri/themes/light/main.css" />
+<script src="https://js.arcgis.com/4.29/"></script>
+
+<script>
+    require([
+        "esri/Map",
+        "esri/views/SceneView",
+        "esri/layers/GeoJSONLayer",
+        "esri/layers/GraphicsLayer",
+        "esri/Graphic",
+        "esri/geometry/Polygon",
+        "esri/geometry/Point",
+        "esri/request"
+    ], function (Map, SceneView, GeoJSONLayer, GraphicsLayer, Graphic, Polygon, Point, esriRequest) {
+        var createGraphic = function(data) {
+            return new Graphic({
+                geometry: data,
+                symbol: data.symbol,
+                attributes: data,
+                popupTemplate: data.popupTemplate
+            });
+        };
+
+        const json_options = {
+            query: {
+                f: "json"
+            },
+            responseType: "json"
+        };
+        // request json
+        esriRequest('./data.json', json_options).then(function(response) {
+            var graphicsLayer = new GraphicsLayer();
+            console.log(response);
+            response.data.forEach(function(data) {
+                graphicsLayer.add(createGraphic(data));
+            });
+            map.add(graphicsLayer);
+
+        });
+        // geojson layer
+        const geojsonLayer = new GeoJSONLayer({
+            url: "./data.geojson"
+        });
+        geojsonLayer.renderer = {
+            type: "simple",
+            symbol: {
+                type: "polygon-3d",
+                symbolLayers: [
+                    {
+                        type: "extrude",
+                        size: 0,
+                        material: {
+                            color: [227, 139, 79]
+                        },
+                        outline: {
+                            size: 1,
+                            color: [181,181,181]
+                        }
+                    }
+                ]
+            }
+        };
+
+        const PillarLayer = new GeoJSONLayer({
+            url: "./Pillar.geojson"
+        });
+
+        const HouseLayer = new GeoJSONLayer({
+            url: "./house.geojson"
+        });
+        
+        HouseLayer.renderer = {
+            type: "simple",
+            symbol: {
+                type: "polygon-3d",
+                symbolLayers: [
+                    {
+                        type: "extrude",
+                        size: 29.5, // Adjust size as needed
+                        material: {
+                            color: [227, 139, 79] // Adjust color as needed
+                        },
+                        outline: {
+                            size: 1,
+                            color: [181,181,181]
+                        }
+                    }
+                ]
+            }
+        };
+
+        const RoofLayer = new GeoJSONLayer({
+            url: "./Roof.geojson"
+        });
+
+        RoofLayer.renderer = {
+            type: "simple",
+            symbol: {
+                type: "polygon-3d",
+                symbolLayers: [{
+                    type: "extrude",
+                    size: 0.1, // Adjust the extrusion height as needed
+                    material: { color: "#B5B5B5" }, // Adjust the color as needed
+                    outline: {
+                        size: 1,
+                        color: [255, 255, 255]
+                    }
+                }]
+            }
+        };
+
+        const map = new Map({
+            basemap: "topo-vector",
+            ground: "world-elevation",
+            layers: [RoofLayer, HouseLayer] // Add windowPillarsLayer to the layers array
+        });
+
+        const view = new SceneView({
+            container: "viewDiv",
+            map: map,
+            camera: {
+                position: [106.69916694406545, 10.779501951477883, 300],
+                heading: 0,
+                tilt: 75
+            }
+        });
+
+        view.popup.defaultPopupTemplateEnabled = true;
+    });
+//[106.69881201848311,10.779682422396423]trái,[106.69909244546895,10.779972715726018]phải tọa độ 2 điểm trên mái
+</script>
+</head>
+
+<body>
+	<div id="viewDiv"></div>
+</body>
+</html>

@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no" />
+	<title>3D - Building Map</title>
+
+	<style>
+		html,
+		body,
+		#viewDiv {
+			padding: 0;
+			margin: 0;
+			height: 100%;
+			width: 100%;
+		}
+	</style>
+
+	<link rel="stylesheet" href="https://js.arcgis.com/4.29/esri/themes/light/main.css" />
+	<script src="https://js.arcgis.com/4.29/"></script>
+
+	<script>
+		require([
+			"esri/Map",
+			"esri/views/SceneView",
+			"esri/layers/GeoJSONLayer",
+			"esri/layers/SceneLayer", "esri/layers/GraphicsLayer", "esri/Graphic", "esri/request"
+		], function (Map, SceneView, GeoJSONLayer, SceneLayer,
+			GraphicsLayer, Graphic, esriRequest) {
+			var createGraphic = function (data) {
+				return new Graphic({
+					geometry: data,
+					symbol: data.symbol,
+					attributes: data,
+					popupTemplate: data.popupTemplate
+				});
+			};
+
+			const json_options = {
+				query: {
+					f: "json"
+				},
+				responseType: "json"
+			};
+			// request json
+			esriRequest('./roof.json', json_options).then(function (response) {
+				var graphicsLayer = new GraphicsLayer();
+				console.log(response);
+				response.data.forEach(function (data) {
+					graphicsLayer.add(createGraphic(data));
+				});
+				map.add(graphicsLayer);
+
+			});
+			esriRequest('./plump/plump_1.json', json_options).then(function (response) {
+				var graphicsLayer = new GraphicsLayer();
+				console.log(response);
+				response.data.forEach(function (data) {
+					graphicsLayer.add(createGraphic(data));
+				});
+				map.add(graphicsLayer);
+
+			});
+			esriRequest('./plump/plump_2.json', json_options).then(function (response) {
+				var graphicsLayer = new GraphicsLayer();
+				console.log(response);
+				response.data.forEach(function (data) {
+					graphicsLayer.add(createGraphic(data));
+				});
+				map.add(graphicsLayer);
+
+			});
+			esriRequest('./plump/plump_3.json', json_options).then(function (response) {
+				var graphicsLayer = new GraphicsLayer();
+				console.log(response);
+				response.data.forEach(function (data) {
+					graphicsLayer.add(createGraphic(data));
+				});
+				map.add(graphicsLayer);
+
+			});
+			esriRequest('./plump/plump_4.json', json_options).then(function (response) {
+				var graphicsLayer = new GraphicsLayer();
+				console.log(response);
+				response.data.forEach(function (data) {
+					graphicsLayer.add(createGraphic(data));
+				});
+				map.add(graphicsLayer);
+
+			});
+			esriRequest('./plump/plump_5.json', json_options).then(function (response) {
+				var graphicsLayer = new GraphicsLayer();
+				console.log(response);
+				response.data.forEach(function (data) {
+					graphicsLayer.add(createGraphic(data));
+				});
+				map.add(graphicsLayer);
+
+			});
+			esriRequest('./plump_right/plump_1.json', json_options).then(function (response) {
+				var graphicsLayer = new GraphicsLayer();
+				console.log(response);
+				response.data.forEach(function (data) {
+					graphicsLayer.add(createGraphic(data));
+				});
+				map.add(graphicsLayer);
+
+			});
+			esriRequest('./plump_right/plump_2.json', json_options).then(function (response) {
+				var graphicsLayer = new GraphicsLayer();
+				console.log(response);
+				response.data.forEach(function (data) {
+					graphicsLayer.add(createGraphic(data));
+				});
+				map.add(graphicsLayer);
+
+			});
+			esriRequest('./plump_right/plump_3.json', json_options).then(function (response) {
+				var graphicsLayer = new GraphicsLayer();
+				console.log(response);
+				response.data.forEach(function (data) {
+					graphicsLayer.add(createGraphic(data));
+				});
+				map.add(graphicsLayer);
+
+			});
+			esriRequest('./plump_right/plump_4.json', json_options).then(function (response) {
+				var graphicsLayer = new GraphicsLayer();
+				console.log(response);
+				response.data.forEach(function (data) {
+					graphicsLayer.add(createGraphic(data));
+				});
+				map.add(graphicsLayer);
+
+			});
+			esriRequest('./plump_right/plump_5.json', json_options).then(function (response) {
+				var graphicsLayer = new GraphicsLayer();
+				console.log(response);
+				response.data.forEach(function (data) {
+					graphicsLayer.add(createGraphic(data));
+				});
+				map.add(graphicsLayer);
+
+			});
+			// geojson layer
+			const geojsonLayer = new GeoJSONLayer({
+				url: "./base.geojson"
+			});
+
+			geojsonLayer.renderer = {
+				type: "simple",
+				symbol: {
+					type: "polygon-3d",
+					symbolLayers: [
+						{
+							type: "extrude",
+							size: 22,
+							material: {
+								color: [255,140,0]
+							},
+							edges: {
+								type: "solid",
+								color: "transparent",
+							},
+						},
+
+					]
+				}
+			};
+
+			const topLayer = new GeoJSONLayer({
+				url: "./top.geojson"
+			});
+
+			topLayer.renderer = {
+				type: "simple",
+				symbol: {
+					type: "polygon-3d",
+					symbolLayers: [
+						{
+							type: "extrude",
+							size: 2,
+							material: {
+								color: [255,140,0]
+							},
+							edges: {
+								type: "solid",
+								color: "transparent",
+							},
+						},
+
+					]
+				}
+			};
+
+			const window_left = new GeoJSONLayer({
+				url: "./window_left.geojson"
+			});
+
+			window_left.renderer = {
+				type: "simple",
+				symbol: {
+					type: "polygon-3d",
+					symbolLayers: [
+						{
+							type: "extrude",
+							size: 22,
+							material: {
+								color: [255,140,0]
+							},
+							edges: {
+								type: "solid",
+								color: "transparent",
+							},
+						},
+
+					]
+				}
+			};
+			const window_right = new GeoJSONLayer({
+				url: "./window_right.geojson"
+			});
+
+			window_right.renderer = {
+				type: "simple",
+				symbol: {
+					type: "polygon-3d",
+					symbolLayers: [
+						{
+							type: "extrude",
+							size: 22,
+							material: {
+								color: [255,140,0]
+							},
+							edges: {
+								type: "solid",
+								color: "transparent",
+							},
+						},
+
+					]
+				}
+			};
+			const map = new Map({
+				basemap: "topo-vector",
+				ground: "world-elevation",
+				layers: [geojsonLayer,topLayer,window_left,window_right] //end layers
+			});
+
+			const view = new SceneView({
+				container: "viewDiv",
+				map: map,
+				camera: {
+					position: [106.69913313182599, 10.779469073441522, 30],
+					heading: 0,
+					tilt: 75
+				}
+			});
+
+			view.popup.defaultPopupTemplateEnabled = true;
+		});
+
+	</script>
+</head>
+
+<body>
+	<div id="viewDiv"></div>
+</body>
+
+</html>
