@@ -15,10 +15,10 @@ import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle'; import authApi from "../../api/authAPI";
 
 let navigation = [
-    { name: 'Home', to: '/home', current: true },
-    { name: 'About', to: '/about', current: false },
-    { name: 'Booking', to: '/booking-preview', current: false },
-    { name: 'Contact', to: '/contact', current: false },
+    { name: 'Trang Chủ', to: '/home', current: true },
+    { name: 'Đặt Vé', to: '/booking-preview', current: false },
+    { name: 'Về Chúng Tôi', to: '/about', current: false },
+    { name: 'Liên Hệ', to: '/contact', current: false },
 ]
 
 function classNames(...classes) {
@@ -111,10 +111,10 @@ export default function Header() {
                                     <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
                                         {!isLogin && (
                                             <>
-                                                <Link to="/login" className="bg-amber-950 text-white rounded-md px-3 py-2 text-sm font-medium">Log In</Link>
-                                                <Link to="/user" className="bg-amber-800 text-white rounded-md px-3 py-2 text-sm font-medium ml-2 flex items-center">
+                                                <Link to="/login" className="bg-amber-950 text-white rounded-md px-3 py-2 text-sm font-medium">Đăng Nhập</Link>
+                                                {/* <Link to="/user" className="bg-amber-800 text-white rounded-md px-3 py-2 text-sm font-medium ml-2 flex items-center">
                                                     <AccountCircleIcon className="mr-1" /> User
-                                                </Link>
+                                                </Link> */}
                                             </>
                                         )}
                                         {isLogin && <Menu as="div" className="relative ml-3">
@@ -144,7 +144,7 @@ export default function Header() {
                                                                 to="/profile"
                                                                 className={classNames(focus ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
                                                             >
-                                                                Your Profile
+                                                                Thông Tin Cá Nhân
                                                             </Link>
                                                         )}
                                                     </MenuItem>
@@ -154,7 +154,7 @@ export default function Header() {
                                                                 to="/setting"
                                                                 className={classNames(focus ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
                                                             >
-                                                                Settings
+                                                                Cài Đặt
                                                             </Link>
                                                         )}
                                                     </MenuItem>
@@ -167,7 +167,7 @@ export default function Header() {
 
                                                                 className={classNames(focus ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700 w-48 text-left')}
                                                             >
-                                                                Sign out
+                                                                Đăng Xuất
                                                             </button>
                                                         )}
                                                     </MenuItem>
