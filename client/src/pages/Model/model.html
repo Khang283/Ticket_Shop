@@ -6,7 +6,16 @@
 	<meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no" />
 	<title>3D - Nhà thờ Đức Bà</title>
 
-	
+	<style>
+		html,
+		body,
+		#viewDiv {
+			padding: 0;
+			margin: 0;
+			height: 100%;
+			width: 100%;
+		}
+	</style>
 
 	<link rel="stylesheet" href="https://js.arcgis.com/4.29/esri/themes/light/main.css" />
 	<script src="https://js.arcgis.com/4.29/"></script>
@@ -54,7 +63,7 @@
 						symbolLayers: [
 							{
 								type: "extrude",
-								size: 11.1,
+								size: 18.5,
 								material: {
 									color: [209, 190, 168]
 								}
@@ -73,7 +82,7 @@
 						symbolLayers: [
 							{
 								type: "extrude",
-								size: 11.1,
+								size: 18.5,
 								material: {
 									color: [209, 190, 168]
 								}
@@ -966,7 +975,7 @@
 					floor2_wall_before_bottom,
 					floor2_wall_before_top,
 					floor2_wall_before_left_right,
-					//horizontal house
+					//horizontal house,
 					HorizontalHouseLayer,
 					RoofLayer
 				] //end layers
