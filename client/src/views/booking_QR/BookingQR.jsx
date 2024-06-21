@@ -1,22 +1,25 @@
 import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import QR_Banking from "../../assets/QR_Banking.jpg";
-import axios from 'axios';
+import axios from "axios";
+import { jwtDecode } from "jwt-decode";
 
 const BookingQR = () => {
   const location = useLocation();
 
+  const accessToken = window.localStorage.getItem("accesToken");
+  const decodedToken = jwtDecode(accessToken);
+  console.log("my customer Id:", decodedToken.id);
   const myReceipt = {
-    customerId: location.state.customerId,
+    customerId: decodedToken.id,
     ticketTypeId: location.state.ticketTypeId,
     date: location.state.date,
     amount: location.state.quantity,
     total: location.state.quantity * location.state.price,
   };
 
-
   const create = async (event) => {
-    console.log(myReceipt)
+    console.log(myReceipt);
     axios
       .post(`http://localhost:3000/api/v1/receipts`, myReceipt)
       .then((response) => {
@@ -30,42 +33,43 @@ const BookingQR = () => {
 
   return (
     <div className="w-full max-w-lg mx-auto">
-        <div
-          class="w-full px-3 mx-auto"
-          style={{ backgroundColor: "rgb(228 197 158 / 100%)" }}
-        >
-          <div class="w-full md:w-1/2 px-3 mx-auto">
-            <label
-              class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2 mx-auto "
-              for="grid-first-name"
-            >
-              Hi, Nguyễn Phước An Vũ
-            </label>
-      
-          </div>
-
-          <div class="w-full md:w-1/2 px-6 mx-auto ">
-            <p class="w-full text-gray-600 text-xs italic mx-auto ">
-              Scan the QR below to purchase
-            </p>
-          </div>
-        </div>
-        <div className="image">
-          <img src={QR_Banking} alt="fireSpot" style={{ marginBottom: 15 }} />
-        </div>
+      <div
+        class="w-full px-3 mx-auto"
+        style={{ backgroundColor: "rgb(228 197 158 / 100%)" }}
+      >
         <div class="w-full md:w-1/2 px-3 mx-auto">
-          <p class="text-gray-600 text-xs italic mx-auto" style={{ marginBottom: 15 }}>
-            After QR payment, please press <b>Done</b>
+          <label
+            class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2 mx-auto "
+            for="grid-first-name"
+          >
+            Xin chào quý khách hàng
+          </label>
+        </div>
+
+        <div class="w-full md:w-1/2 px-6 mx-auto ">
+          <p class="w-full text-gray-600 text-xs italic mx-auto ">
+            Quét mã QR dưới để mua hàng
           </p>
-          <button
+        </div>
+      </div>
+      <div className="image">
+        <img src={QR_Banking} alt="fireSpot" style={{ marginBottom: 15 }} />
+      </div>
+      <div class="w-full md:w-1/2 px-3 mx-auto">
+        <p
+          class="text-gray-600 text-xs italic mx-auto"
+          style={{ marginBottom: 15 }}
+        >
+          Bấm vào <b>Hoàn Thành</b> nếu đã thanh toán xong
+        </p>
+        <button
           class="bg-blue-500 hover:bg-blue-700  text-white font-bold py-2 px-4 rounded-full mx-auto w-full"
           style={{ marginBottom: 10, backgroundColor: "rgb(128 61 59 / 100%)" }}
           onClick={() => create()}
         >
-          Done
+          Hoàn Thành
         </button>
-        </div>
-        
+      </div>
     </div>
   );
 };
