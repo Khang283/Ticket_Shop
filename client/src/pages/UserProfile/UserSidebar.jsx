@@ -34,7 +34,7 @@ const UserSidebar = () => {
             </div>
             <ul className="sidebar-menu">
                 <li>
-                    <button onClick={() => navigate('/user')}>
+                    <button onClick={() => navigate('/profile')}>
                         <AccountCircleIcon className="sidebar-icon" />
                         Thông tin cá nhân
                     </button>

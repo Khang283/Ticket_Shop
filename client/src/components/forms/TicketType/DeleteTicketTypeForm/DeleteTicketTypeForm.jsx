@@ -16,9 +16,9 @@ const DeleteTicketTypeForm = ({ ticketType, onClose }) => {
   return (
     <div className='fixed inset-0 flex items-center justify-center bg-gray-500 bg-opacity-60'>
       <div className='bg-white rounded-lg shadow-lg w-full max-w-md text-left'>
-        <h1 className='text-center'>Xác nhận xóa người dùng</h1>
+        <h1 className='text-center'>Xác nhận xóa loại vé</h1>
         <div className='px-8 pt-6 pb-8 mb-4'>
-          <p className='mb-4 text-center'>Bạn có chắc chắn muốn xóa người dùng <strong>{ticketType.name}</strong> không?</p>
+          <p className='mb-4 text-center'>Bạn có chắc chắn muốn xóa loại vé <strong>{ticketType.name}</strong> không?</p>
           <div className="flex items-center justify-between">
             <button
               className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"

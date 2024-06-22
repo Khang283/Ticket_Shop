@@ -28,43 +28,47 @@ const Ticket = () => {
 
     const handleAddButtonClick = () => {
         setShowAddForm(true);
-    }
+    };
 
     const handleCloseAddForm = () => {
         setShowAddForm(false);
-    }
+        fetchTickets();
+    };
 
     const handleAddTicket = (newTicket) => {
         setTickets([...tickets, newTicket]);
-    }
+    };
 
     const handleEditButtonClick = (ticket) => {
         setSelectedTicket(ticket);
         setShowEditForm(true);
-    }
+    };
 
     const handleCloseEditForm = () => {
         setShowEditForm(false);
         setSelectedTicket(null);
-    }
+        fetchTickets();
+    };
 
     const handleEditTicket = (updatedTicket) => {
         setTickets(tickets.map(ticket => ticket.id === updatedTicket.id ? updatedTicket : ticket));
-    }
+    };
 
     const handleDeleteButtonClick = (ticket) => {
         setSelectedTicket(ticket);
         setShowDeleteForm(true);
-    }
+    };
 
     const handleCloseDeleteForm = () => {
         setShowDeleteForm(false);
         setSelectedTicket(null);
-    }
+        fetchTickets();
+    };
 
     const handleDeleteTicket = (deletedTicketId) => {
         setTickets(tickets.filter(ticket => ticket.id !== deletedTicketId));
-    }
+        fetchTickets();
+    };
 
     return (
         <div id="ticket">

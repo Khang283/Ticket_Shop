@@ -45,9 +45,9 @@ const AddTicketTypeForm = ({ onClose }) => {
                             type="text" id="price" value={formData.price} onChange={handleChange} placeholder="Ex: 70000" required/>
                     </div>
                     <div className="mb-4 flex items-center">
-                        <label className="w-1/3 text-gray-700 text-sm font-bold mb-2 ml-4 mr-4" htmlFor="sale">Khuyến mãi</label>
+                        <label className="w-1/3 text-gray-700 text-sm font-bold mb-2 ml-4 mr-4" htmlFor="sales">Khuyến mãi</label>
                         <input className="w-2/3 border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                            type="text" id="sale" value={formData.sales} onChange={handleChange} placeholder="Ex: 10000" required/>
+                            type="text" id="sales" value={formData.sales} onChange={handleChange} placeholder="Ex: 70000" required/>
                     </div>
                     <div className="mb-4 flex items-center">
                         <label className="w-1/3 text-gray-700 text-sm font-bold mb-2 ml-4 mr-4" htmlFor="description">Mô tả</label>

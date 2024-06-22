@@ -16,7 +16,7 @@ const Receipt = () => {
   const [date, setDate] = useState();
 
   const convertDateTimeToDate = (dateTime) => {
-    return format(new Date(dateTime), 'dd-MM-yyyy'); // Custom format using date-fns
+    return format(new Date(dateTime), 'dd-MM-yyyy');
   };
   const fetchDetail = async () => {
     axios
